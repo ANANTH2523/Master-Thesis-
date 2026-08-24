@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scenario 2 — Web-Based File Management Application — Scenario Package</title>
+<style>
+:root {
+  --pri: #1B2A4A;
+  --sec: #2C5F8A;
+  --acc: #3A7CA5;
+  --light: #E8F0FE;
+  --border: #B0BEC5;
+  --bg: #FFFFFF;
+  --txt: #212121;
+  --muted: #546E7A;
+  --red: #C62828;
+  --green: #2E7D32;
+  --orange: #EF6C00;
+  --purple: #6A1B9A;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 11pt;
+  line-height: 1.6;
+  color: var(--txt);
+  background: var(--bg);
+  max-width: 210mm;
+  margin: 0 auto;
+  padding: 20mm 18mm;
+}
+h1 {
+  font-size: 18pt;
+  color: var(--pri);
+  border-bottom: 3px solid var(--sec);
+  padding-bottom: 8px;
+  margin-bottom: 4px;
+}
+h1 + p.subtitle {
+  color: var(--muted);
+  font-size: 10pt;
+  margin-bottom: 24px;
+}
+h2 {
+  font-size: 14pt;
+  color: var(--sec);
+  margin-top: 32px;
+  margin-bottom: 10px;
+  border-left: 4px solid var(--acc);
+  padding-left: 10px;
+}
+h3 {
+  font-size: 12pt;
+  color: var(--pri);
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+p, li { margin-bottom: 6px; }
+ul, ol { padding-left: 22px; margin-bottom: 12px; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0 18px;
+  font-size: 10pt;
+}
+th {
+  background: var(--pri);
+  color: #fff;
+  padding: 8px 10px;
+  text-align: left;
+  font-weight: 600;
+}
+td {
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+}
+tr:nth-child(even) td { background: #F5F7FA; }
+.diagram-box {
+  background: #F8FAFC;
+  border: 2px solid var(--sec);
+  border-radius: 4px;
+  padding: 20px;
+  margin: 14px 0 20px;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 10pt;
+  line-height: 1.45;
+  white-space: pre;
+  overflow-x: auto;
+}
+.note {
+  background: #FFF8E1;
+  border-left: 4px solid var(--orange);
+  padding: 10px 14px;
+  margin: 12px 0;
+  font-size: 10pt;
+}
+.info-box {
+  background: var(--light);
+  border-left: 4px solid var(--acc);
+  padding: 10px 14px;
+  margin: 12px 0;
+  font-size: 10pt;
+}
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 9pt;
+  font-weight: 600;
+  margin-right: 3px;
+}
+.badge-s { background: #C8E6C9; color: #1B5E20; }
+.badge-t { background: #BBDEFB; color: #0D47A1; }
+.badge-r { background: #F8BBD0; color: #880E4F; }
+.badge-i { background: #FFE0B2; color: #E65100; }
+.badge-d { background: #D1C4E9; color: #4A148C; }
+.badge-e { background: #FFF9C4; color: #F57F17; }
+.check { color: var(--green); font-weight: bold; }
+.cross { color: var(--red); font-weight: bold; }
+.page-break { page-break-before: always; }
+.footer {
+  margin-top: 40px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font-size: 9pt;
+  color: var(--muted);
+  text-align: center;
+}
+.drawio-note {
+  background: #E8F5E9;
+  border: 1px solid #A5D6A7;
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin: 10px 0;
+  font-size: 10pt;
+}
+</style>
+</head>
+<body>
+
+<!-- TITLE PAGE -->
+<h1>Scenario 2 — Web-Based File Management Application</h1>
+<p class="subtitle">
+  Scenario Package for Architecture-Level Threat Modelling<br>
+  Prepared for Master's Thesis: <em>"Benchmarking AI-Assisted Threat Modeling"</em><br>
+  Classification: Architecture-Level Documentation · No Implementation Assumptions · STRIDE-Ready
+</p>
+
+<!-- ============================================================ -->
+<h2>1. System Architecture</h2>
+<!-- ============================================================ -->
+
+<h3>1.1 External Entities</h3>
+<table>
+<tr><th>Entity</th><th>Description</th><th>Role</th></tr>
+<tr>
+  <td><strong>Authenticated User (Browser)</strong></td>
+  <td>An external human actor who interacts with the system via a web browser after authenticating.</td>
+  <td>Uploads files through the web frontend; sends download requests using stored file references; receives retrieved files.</td>
+</tr>
+</table>
+
+<h3>1.2 Processes / Services</h3>
+<table>
+<tr><th>Component</th><th>Purpose</th><th>Responsibilities</th><th>Inputs</th><th>Outputs</th></tr>
+<tr>
+  <td><strong>Web Frontend Interface</strong></td>
+  <td>Client-side presentation layer through which the authenticated user interacts with the file management system.</td>
+  <td>
+    · Presents file upload submission form<br>
+    · Presents file download request interface<br>
+    · Forwards uploaded files to the backend processing service<br>
+    · Forwards download requests to the retrieval handler<br>
+    · Returns retrieved files to the user
+  </td>
+  <td>File upload from user (file data + metadata); download request with file reference from user</td>
+  <td>Forwarded file upload (to Backend File Processing Service); forwarded download request (to File Retrieval Handler); file download response (to user)</td>
+</tr>
+<tr>
+  <td><strong>Backend File Processing Service</strong></td>
+  <td>Server-side service responsible for orchestrating the file upload workflow.</td>
+  <td>
+    · Receives forwarded files from the web frontend<br>
+    · Coordinates file validation through the validation module<br>
+    · Stores validated files and metadata in the storage repository<br>
+    · Receives and propagates file reference identifiers
+  </td>
+  <td>Forwarded uploaded file (from Web Frontend); validation result (from File Validation Module); file reference identifier (from Server Storage Repository)</td>
+  <td>File for validation (to File Validation Module); validated file + metadata for storage (to Server Storage Repository); file reference identifier (to Web Frontend / user)</td>
+</tr>
+<tr>
+  <td><strong>File Validation Module</strong></td>
+  <td>Server-side module that performs basic validation checks on uploaded files.</td>
+  <td>
+    · Checks file type against allowed types<br>
+    · Checks file size against permitted limits<br>
+    · Returns validation result (pass/fail) to the backend service
+  </td>
+  <td>File data (from Backend File Processing Service)</td>
+  <td>Validation result (to Backend File Processing Service)</td>
+</tr>
+<tr>
+  <td><strong>File Retrieval Handler</strong></td>
+  <td>Server-side service responsible for processing file download requests.</td>
+  <td>
+    · Receives download requests with file reference identifiers<br>
+    · Locates requested files in the storage repository<br>
+    · Returns retrieved files to the authenticated user
+  </td>
+  <td>Download request with file reference (from Web Frontend); stored file data (from Server Storage Repository)</td>
+  <td>File lookup request (to Server Storage Repository); retrieved file (to Web Frontend / user)</td>
+</tr>
+</table>
+
+<h3>1.3 Data Stores</h3>
+<table>
+<tr><th>Data Store</th><th>Purpose</th><th>Data Held</th><th>Accessed By</th></tr>
+<tr>
+  <td><strong>Server Storage Repository</strong></td>
+  <td>Persistent storage for uploaded files and their associated metadata.</td>
+  <td>Uploaded user files; file metadata (type, size, timestamps); file reference identifiers; storage references mapping files to their identifiers.</td>
+  <td>Backend File Processing Service (write on upload); File Retrieval Handler (read on download)</td>
+</tr>
+</table>
+
+<h3>1.4 Architecture Diagram (draw.io / diagrams.net)</h3>
+
+<div class="drawio-note">
+<strong>Recreation Instructions:</strong> In draw.io, represent each component as a rectangle with rounded corners. Use a large dashed rectangle for each trust boundary. Use directed arrows for data flows, labelled with the flow name. The External Entity (User) should be drawn as a rectangle with a person icon or as an actor symbol.
+</div>
+
+<div class="diagram-box">
+┌─────────────────────────────────────────────────────────────────────────────────────┐
+│                          TRUST BOUNDARY TB1                                         │
+│        (External User Browser ↔ Internal Backend File Processing Service)           │
+│                                                                                     │
+│  ┌──────────────┐     ┌──────────────────────┐     ┌─────────────────────────────┐  │
+│  │              │     │                      │     │                             │  │
+│  │  AUTHENTICATED│     │   WEB FRONTEND       │     │  BACKEND FILE PROCESSING    │  │
+│  │  USER         │────▶│   INTERFACE          │────▶│  SERVICE                    │  │
+│  │  (Browser)    │     │                      │     │                             │  │
+│  │              │◀────│  · Upload form        │◀────│  · Orchestrates upload      │  │
+│  │              │     │  · Download interface  │     │  · Coordinates validation   │  │
+│  └──────────────┘     └──────────────────────┘     └──────────┬──────────────────┘  │
+│                                                                │                     │
+│                           ┌────────────────────────┐           │                     │
+│          ┌────────────────│  FILE VALIDATION MODULE │◀──────────┘                     │
+│          │                │                        │  (file for validation)          │
+│          │                │  · Checks file type    │                                 │
+│          │                │  · Checks file size    │                                 │
+│          │                └────────────────────────┘                                 │
+│          │  (validation result)                                                      │
+│          │                                                                            │
+│          │        ┌──────────────── TB2 ──────────────────────┐                      │
+│          │        │  (Validation Logic ↔ Persistent Storage)  │                      │
+│          ▼        │                                            │                      │
+│  ┌────────────────▼─────────────┐    ┌─────────────────────────▼──────────────────┐  │
+│  │                              │    │                                            │  │
+│  │  FILE RETRIEVAL HANDLER      │    │  SERVER STORAGE REPOSITORY                 │  │
+│  │                              │    │                                            │  │
+│  │  · Processes download requests│    │  · Uploaded files                          │  │
+│  │  · Locates files in storage  │    │  · File metadata                           │  │
+│  │  · Returns files to user     │    │  · File reference identifiers              │  │
+│  │                              │    │  · Storage references                      │  │
+│  └──────────────────────────────┘    └────────────────────────────────────────────┘  │
+│                                                                                     │
+│  ═══════════════════ TB3 ════════════════════════                                    │
+│  (User-Controlled Content ↔ Server-Side Handling)                                   │
+│                                                                                     │
+│  ═══════════════════ TB4 ════════════════════════                                    │
+│  (Authenticated Session ↔ Retrieval Authorization Logic)                            │
+│                                                                                     │
+└─────────────────────────────────────────────────────────────────────────────────────┘
+</div>
+
+<!-- ============================================================ -->
+<h2>2. Level-1 Data Flow Diagram (DFD)</h2>
+<!-- ============================================================ -->
+
+<div class="diagram-box">
+                          ┌──────────────────────┐
+                          │   AUTHENTICATED USER  │
+                          │      (Browser)        │
+                          └──┬───────────────┬───┘
+                 DF1 (file)  │               │  DF6 (download request
+                             │               │       + file reference)
+                             ▼               │
+                 ┌──────────────────────┐    │
+                 │    WEB FRONTEND      │    │
+                 │    INTERFACE         │    │
+                 └───┬──────────┬───────┘    │
+          DF2 (file) │          │            │
+                     │          │            │
+                     ▼          │            │
+  ┌──────────────────────────┐  │            │
+  │  BACKEND FILE            │  │            │
+  │  PROCESSING SERVICE      │  │            │
+  └──┬────────────┬──────────┘  │            │
+     │            │             │            │
+DF3  │            │ DF5         │            │
+(file│            │(validated   │            │
+for  │            │ file +      │            │
+val.)│            │ metadata)   │            │
+     ▼            │             │            │
+┌────────────┐    │             │            │
+│ FILE       │    │             │            │
+│ VALIDATION │    │             │            │
+│ MODULE     │    ▼             │            │
+└──────┬─────┘ ┌────────────────────────┐   │
+       │       │ SERVER STORAGE         │   │
+DF4    │       │ REPOSITORY             │   │
+(valid.│       │                        │   │
+result)│       │ · Files                │   │
+       │       │ · Metadata             │   │
+       │       │ · File references      │   │
+       │       └───────────┬────────────┘   │
+       │                   │                │
+       │                   │ DF7            │
+       │                   │(file ref.      │
+       │                   │ identifier)    │
+       │                   ▼                │
+       │       ┌────────────────────────┐   │
+       │       │ FILE RETRIEVAL         │   │
+       │       │ HANDLER                │◀──┘
+       │       │                        │  DF6
+       │       │  · Locates file        │
+       │       │  · Returns file        │
+       │       └────────┬───────────────┘
+       │                │
+       │                │ DF8 (retrieved file)
+       │                ▼
+       │    ┌──────────────────────┐
+       │    │    WEB FRONTEND      │
+       │    │    INTERFACE         │──────▶  AUTHENTICATED USER
+       │    └──────────────────────┘  DF8     (receives file)
+       │
+       └──── (validation result flows back to Backend File Processing Service)
+</div>
+
+<h3>Data Flow Labels</h3>
+<table>
+<tr><th>Flow ID</th><th>Label</th><th>Source</th><th>Destination</th></tr>
+<tr><td>DF1</td><td>File upload submission (file data + metadata)</td><td>Authenticated User</td><td>Web Frontend Interface</td></tr>
+<tr><td>DF2</td><td>Forwarded uploaded file</td><td>Web Frontend Interface</td><td>Backend File Processing Service</td></tr>
+<tr><td>DF3</td><td>File for validation (type + size check)</td><td>Backend File Processing Service</td><td>File Validation Module</td></tr>
+<tr><td>DF4</td><td>Validation result (pass/fail)</td><td>File Validation Module</td><td>Backend File Processing Service</td></tr>
+<tr><td>DF5</td><td>Validated file + metadata for storage</td><td>Backend File Processing Service</td><td>Server Storage Repository</td></tr>
+<tr><td>DF6</td><td>Download request with file reference identifier</td><td>Authenticated User</td><td>Web Frontend Interface → File Retrieval Handler</td></tr>
+<tr><td>DF7</td><td>File reference identifier</td><td>Server Storage Repository</td><td>Backend File Processing Service</td></tr>
+<tr><td>DF8</td><td>Retrieved file (download response)</td><td>File Retrieval Handler</td><td>Web Frontend Interface → Authenticated User</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>3. Component Table</h2>
+<!-- ============================================================ -->
+
+<table>
+<tr><th>Component</th><th>Description</th><th>Responsibilities</th></tr>
+<tr>
+  <td><strong>Web Frontend Interface</strong></td>
+  <td>Client-side presentation layer served to the user's browser; provides the upload and download interfaces.</td>
+  <td>
+    · Presents file upload submission form to authenticated users<br>
+    · Presents file download request interface<br>
+    · Forwards uploaded files to the Backend File Processing Service<br>
+    · Forwards download requests (with file reference) to the File Retrieval Handler<br>
+    · Delivers retrieved files back to the user
+  </td>
+</tr>
+<tr>
+  <td><strong>Backend File Processing Service</strong></td>
+  <td>Server-side orchestration service that manages the file upload workflow from receipt through validation to storage.</td>
+  <td>
+    · Receives forwarded files from the web frontend<br>
+    · Invokes the File Validation Module to check file type and size<br>
+    · Stores validated files and metadata in the Server Storage Repository<br>
+    · Receives file reference identifiers from storage and propagates them
+  </td>
+</tr>
+<tr>
+  <td><strong>File Validation Module</strong></td>
+  <td>Server-side validation component that performs basic integrity checks on uploaded files.</td>
+  <td>
+    · Checks file type against allowed types<br>
+    · Checks file size against permitted limits<br>
+    · Returns validation result (pass/fail) to the Backend File Processing Service
+  </td>
+</tr>
+<tr>
+  <td><strong>Server Storage Repository</strong></td>
+  <td>Persistent data store for uploaded files and their associated metadata and reference identifiers.</td>
+  <td>
+    · Stores uploaded user files<br>
+    · Stores file metadata (type, size, timestamps)<br>
+    · Stores file reference identifiers and storage references<br>
+    · Provides file lookup for retrieval operations
+  </td>
+</tr>
+<tr>
+  <td><strong>File Retrieval Handler</strong></td>
+  <td>Server-side service responsible for processing download requests and returning stored files to authenticated users.</td>
+  <td>
+    · Receives download requests with file reference identifiers<br>
+    · Locates requested files in the Server Storage Repository<br>
+    · Returns retrieved files to the authenticated user via the Web Frontend
+  </td>
+</tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>4. Asset Table</h2>
+<!-- ============================================================ -->
+
+<table>
+<tr><th>Asset</th><th>Description</th><th>Owner / Custodian</th><th>Security Importance</th><th>CIA Classification</th></tr>
+<tr>
+  <td><strong>Uploaded User Files</strong></td>
+  <td>Files (images, documents, etc.) that authenticated users have uploaded to the system.</td>
+  <td>Uploading user (creator); Server Storage Repository (custodian).</td>
+  <td>High — primary content asset of the application; compromise affects user data integrity and confidentiality.</td>
+  <td>
+    <strong>C:</strong> High — files may contain sensitive user content.<br>
+    <strong>I:</strong> High — unauthorized modification corrupts user data.<br>
+    <strong>A:</strong> Medium — users expect reliable access to their files.
+  </td>
+</tr>
+<tr>
+  <td><strong>File Metadata and Storage References</strong></td>
+  <td>Descriptive information about uploaded files (type, size, timestamps) and the reference identifiers that map files to their storage locations.</td>
+  <td>Backend File Processing Service (creator); Server Storage Repository (custodian).</td>
+  <td>High — metadata and references are essential for file retrieval; compromise enables unauthorized file access or retrieval failures.</td>
+  <td>
+    <strong>C:</strong> Medium — metadata reveals file characteristics.<br>
+    <strong>I:</strong> High — corrupted metadata prevents correct file retrieval.<br>
+    <strong>A:</strong> High — loss of references renders files inaccessible.
+  </td>
+</tr>
+<tr>
+  <td><strong>User Account Identity</strong></td>
+  <td>The authenticated identity of the user performing file operations (upload/download).</td>
+  <td>External authentication system (assumed); user (owner of identity).</td>
+  <td>High — identity is the basis for authorized file access; impersonation grants unauthorized file access.</td>
+  <td>
+    <strong>C:</strong> High — identity must not be disclosed to unauthorized parties.<br>
+    <strong>I:</strong> High — identity spoofing enables unauthorized operations.<br>
+    <strong>A:</strong> Medium — identity verification failure blocks legitimate access.
+  </td>
+</tr>
+<tr>
+  <td><strong>Server-Side Storage Repository</strong></td>
+  <td>The infrastructure and data store that persistently holds uploaded files, metadata, and reference identifiers.</td>
+  <td>System operator / infrastructure owner.</td>
+  <td>Critical — the repository is the single point of storage for all uploaded content; its compromise affects all users and files.</td>
+  <td>
+    <strong>C:</strong> High — contains all uploaded user files.<br>
+    <strong>I:</strong> High — corruption affects all stored files.<br>
+    <strong>A:</strong> High — unavailability blocks all file operations.
+  </td>
+</tr>
+<tr>
+  <td><strong>Authorized File Retrieval Access</strong></td>
+  <td>The privilege of authenticated users to retrieve files they are authorized to access.</td>
+  <td>System (granted upon authentication); user (exercises the privilege).</td>
+  <td>High — unauthorized retrieval access exposes private files; denial of retrieval access blocks legitimate use.</td>
+  <td>
+    <strong>C:</strong> High — unauthorized retrieval discloses private files.<br>
+    <strong>I:</strong> High — unauthorized retrieval may be indistinguishable from legitimate access.<br>
+    <strong>A:</strong> Medium — blocked retrieval prevents authorized use.
+  </td>
+</tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>5. Entry Points</h2>
+<!-- ============================================================ -->
+
+<table>
+<tr><th>Entry Point</th><th>Purpose</th><th>Connected Component</th><th>Associated Data Flow(s)</th></tr>
+<tr>
+  <td><strong>File Upload Submission Form</strong></td>
+  <td>Interface through which an authenticated user selects and submits a file for upload to the server.</td>
+  <td>Web Frontend Interface</td>
+  <td>DF1 (file upload submission), DF2 (forwarded file)</td>
+</tr>
+<tr>
+  <td><strong>File Download Request Interface</strong></td>
+  <td>Interface through which an authenticated user requests retrieval of a previously uploaded file using its file reference identifier.</td>
+  <td>Web Frontend Interface</td>
+  <td>DF6 (download request with file reference), DF8 (retrieved file response)</td>
+</tr>
+<tr>
+  <td><strong>HTTP File Transfer Requests from Browser to Backend Service</strong></td>
+  <td>Network-level transport mechanism through which file data and download requests travel between the browser and the backend services.</td>
+  <td>Web Frontend Interface → Backend File Processing Service / File Retrieval Handler</td>
+  <td>DF2 (file upload), DF6 (download request), DF8 (file download response)</td>
+</tr>
+<tr>
+  <td><strong>User Authentication Session During File Operations</strong></td>
+  <td>The authenticated session context that accompanies all file upload and download operations, establishing the user's identity and authorization.</td>
+  <td>Web Frontend Interface (session presentation); Backend services (session validation)</td>
+  <td>All data flows (DF1–DF8) occur within the context of an authenticated session.</td>
+</tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>6. Trust Boundaries</h2>
+<!-- ============================================================ -->
+
+<table>
+<tr><th>Boundary ID</th><th>Components Separated</th><th>Why It Is a Trust Boundary</th><th>Security Significance</th></tr>
+<tr>
+  <td><strong>TB1</strong></td>
+  <td>External User Browser ↔ Internal Backend File Processing Service</td>
+  <td>The browser is an externally controlled environment operated by the user; the backend services are internally operated and managed by the system. Data crossing this boundary originates from or is delivered to an untrusted external actor.</td>
+  <td>
+    · All uploaded files cross this boundary (DF1, DF2).<br>
+    · All download requests cross this boundary (DF6).<br>
+    · All retrieved files cross this boundary (DF8).<br>
+    · Any data in transit across TB1 is exposed to interception, modification, or injection by external parties.
+  </td>
+</tr>
+<tr>
+  <td><strong>TB2</strong></td>
+  <td>Backend File Validation Logic ↔ Persistent Storage Repository</td>
+  <td>The validation module performs active processing logic (type and size checks); the storage repository is a passive persistence layer. They operate in different trust contexts — validation logic is transient and rule-based, while storage is persistent and holds sensitive data at rest.</td>
+  <td>
+    · Validated files and metadata cross this boundary for storage (DF5).<br>
+    · File reference identifiers cross this boundary on return (DF7).<br>
+    · File data crosses from the processing/validation context into the persistent storage context.<br>
+    · Compromise of this boundary could allow storage of unvalidated content or unauthorized retrieval of stored content.
+  </td>
+</tr>
+<tr>
+  <td><strong>TB3</strong></td>
+  <td>User-Controlled Uploaded Content ↔ Server-Side File Handling Components</td>
+  <td>Uploaded files are user-controlled content — their type, size, naming, and internal structure are determined by the user. Server-side components (validation module, storage repository, retrieval handler) process this content based on server-side rules. This boundary represents the transition from untrusted user input to server-side processing logic.</td>
+  <td>
+    · Uploaded file data crosses this boundary from user control to server processing (DF2, DF3).<br>
+    · The server must treat all user-supplied content as potentially malicious.<br>
+    · Inadequate handling at this boundary could allow malicious content to bypass validation or exploit processing logic.
+  </td>
+</tr>
+<tr>
+  <td><strong>TB4</strong></td>
+  <td>Authenticated File Request Session ↔ File Retrieval Authorization Logic</td>
+  <td>The authenticated session represents the user's identity claim; the retrieval authorization logic determines which files the authenticated user is permitted to access. These are distinct trust contexts — session authentication does not automatically imply authorization for every file.</td>
+  <td>
+    · Download requests cross this boundary when the system must verify whether the authenticated user is authorized to access the requested file (DF6).<br>
+    · Compromise of this boundary could allow authenticated users to retrieve files they are not authorized to access.<br>
+    · Separation of authentication from authorization is essential for enforcing per-file access control.
+  </td>
+</tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>7. Data Flow Table</h2>
+<!-- ============================================================ -->
+
+<table>
+<tr><th>Flow ID</th><th>Source</th><th>Destination</th><th>Data</th><th>Purpose</th><th>Crosses Trust Boundary?</th></tr>
+<tr>
+  <td>DF1</td>
+  <td>Authenticated User</td>
+  <td>Web Frontend Interface</td>
+  <td>File data, file name, file type, file size</td>
+  <td>User submits a file for upload through the frontend upload form.</td>
+  <td><span class="badge badge-r">TB1</span> Yes — crosses from external browser to internal frontend.</td>
+</tr>
+<tr>
+  <td>DF2</td>
+  <td>Web Frontend Interface</td>
+  <td>Backend File Processing Service</td>
+  <td>Forwarded file data and metadata</td>
+  <td>Frontend forwards the uploaded file to the backend service for processing.</td>
+  <td><span class="badge badge-r">TB1</span> Yes — crosses from frontend into the internal backend service.<br><span class="badge badge-e">TB3</span> Yes — user-controlled content enters server-side handling.</td>
+</tr>
+<tr>
+  <td>DF3</td>
+  <td>Backend File Processing Service</td>
+  <td>File Validation Module</td>
+  <td>File data (for type and size validation)</td>
+  <td>Backend service passes the file to the validation module for constraint checking.</td>
+  <td><span class="badge badge-e">TB3</span> Yes — user-controlled content is processed by server-side validation logic.</td>
+</tr>
+<tr>
+  <td>DF4</td>
+  <td>File Validation Module</td>
+  <td>Backend File Processing Service</td>
+  <td>Validation result (pass/fail)</td>
+  <td>Validation module returns the outcome of file type and size checks.</td>
+  <td>No — remains within the backend processing context.</td>
+</tr>
+<tr>
+  <td>DF5</td>
+  <td>Backend File Processing Service</td>
+  <td>Server Storage Repository</td>
+  <td>Validated file data, file metadata (type, size, timestamps)</td>
+  <td>Backend service stores the validated file and its metadata in the persistent repository.</td>
+  <td><span class="badge badge-t">TB2</span> Yes — crosses from validation logic to persistent storage.</td>
+</tr>
+<tr>
+  <td>DF6</td>
+  <td>Authenticated User</td>
+  <td>Web Frontend Interface → File Retrieval Handler</td>
+  <td>Download request containing file reference identifier</td>
+  <td>User requests retrieval of a previously uploaded file using its stored reference identifier.</td>
+  <td><span class="badge badge-r">TB1</span> Yes — crosses from external browser into internal services.<br><span class="badge badge-i">TB4</span> Yes — authenticated session is evaluated against retrieval authorization logic.</td>
+</tr>
+<tr>
+  <td>DF7</td>
+  <td>Server Storage Repository</td>
+  <td>Backend File Processing Service</td>
+  <td>File reference identifier</td>
+  <td>Storage system returns the file reference identifier after successful storage.</td>
+  <td><span class="badge badge-t">TB2</span> Yes — crosses from persistent storage back to processing logic.</td>
+</tr>
+<tr>
+  <td>DF8</td>
+  <td>File Retrieval Handler</td>
+  <td>Web Frontend Interface → Authenticated User</td>
+  <td>Retrieved file data</td>
+  <td>Retrieval handler locates the requested file in storage and returns it to the authenticated user.</td>
+  <td><span class="badge badge-r">TB1</span> Yes — crosses from internal services back to the external browser.</td>
+</tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>8. Architecture Explanation</h2>
+<!-- ============================================================ -->
+
+<p>
+The Scenario 2 architecture models a web-based file management application with a three-tier structure:
+a client-side presentation tier (Web Frontend Interface), a server-side application tier comprising
+three components (Backend File Processing Service, File Validation Module, and File Retrieval Handler),
+and a data tier (Server Storage Repository). The system's primary purpose is to allow authenticated
+users to upload files and retrieve them later through download requests.
+</p>
+
+<p>
+<strong>Component Interactions.</strong> The system supports two primary workflows — upload and download — both
+initiated by the authenticated user through the Web Frontend Interface. During upload, the user submits
+a file (DF1) which the frontend forwards to the Backend File Processing Service (DF2). The processing
+service orchestrates the upload by passing the file to the File Validation Module (DF3), receiving the
+validation result (DF4), and — if validation succeeds — storing the file and metadata in the Server
+Storage Repository (DF5). The repository returns a file reference identifier (DF7) which is propagated
+back to the user. During download, the user submits a request with the file reference identifier (DF6);
+the File Retrieval Handler locates the file in the repository and returns it (DF8).
+</p>
+
+<p>
+<strong>Data Movement.</strong> Data flows are strictly sequential and request-driven. During upload, file data
+flows inward from the browser through the frontend, processing service, and validation module, ultimately
+reaching the storage repository. The file reference identifier flows outward as confirmation. During
+download, the file reference flows inward, and the retrieved file flows outward. There are no
+asynchronous or background data flows described in the scenario.
+</p>
+
+<p>
+<strong>Trust Assumptions.</strong> The architecture defines four trust boundaries. TB1 separates the untrusted
+external browser from the internal backend services — all user-supplied data crosses this boundary.
+TB2 separates the active validation logic from the passive persistent storage, reflecting the different
+trust contexts of processing logic and data at rest. TB3 captures the transition from user-controlled
+content to server-side handling — all uploaded files are user-controlled and must be treated as
+potentially untrusted. TB4 separates the authenticated session (identity claim) from the retrieval
+authorization logic (access decision), recognizing that authentication and authorization are distinct
+trust concerns. The architecture implicitly assumes that the server-side components (Backend File
+Processing Service, File Validation Module, File Retrieval Handler) operate within a single internal
+trust zone — no internal boundaries between these server-side components are described.
+</p>
+
+<!-- ============================================================ -->
+<h2>9. DFD Explanation</h2>
+<!-- ============================================================ -->
+
+<h3>9.1 Processes</h3>
+<p>
+The DFD contains four processes corresponding to the four active components. The <strong>Web Frontend
+Interface</strong> is the entry process, responsible for collecting user input (file uploads and download
+requests) and relaying them to backend services. It performs no validation or security-critical logic
+independently — it is a pass-through presentation layer. The <strong>Backend File Processing Service</strong> is
+the central orchestration process for the upload workflow: it receives forwarded files, invokes
+validation, and coordinates storage. The <strong>File Validation Module</strong> is a specialized process that
+performs only file type and size checks — it receives file data and returns a pass/fail result.
+The <strong>File Retrieval Handler</strong> is the central process for the download workflow: it receives download
+requests, locates files in the storage repository, and returns them to the user.
+</p>
+
+<h3>9.2 Data Flows</h3>
+<p>
+<strong>DF1</strong> represents the user's submission of a file through the upload form — this is the starting point
+of the upload workflow. <strong>DF2</strong> carries the same file data from the frontend to the backend processing
+service — the data is unchanged; only the transport context shifts. <strong>DF3</strong> passes the file to the
+validation module for type and size checking. <strong>DF4</strong> returns the validation result. <strong>DF5</strong> stores the
+validated file and metadata in the repository. <strong>DF7</strong> returns the file reference identifier from storage
+to the backend service. <strong>DF6</strong> represents the download request — the user submits a file reference
+identifier through the frontend. <strong>DF8</strong> returns the retrieved file to the user.
+</p>
+
+<h3>9.3 Trust Boundaries</h3>
+<p>
+<strong>TB1</strong> is crossed by DF1, DF2, DF6, and DF8 — every data flow between the browser and the internal
+services crosses this boundary, making it the most frequently traversed trust boundary. <strong>TB2</strong> is
+crossed by DF5 (file storage) and DF7 (reference identifier return), isolating the storage repository
+from direct external access. <strong>TB3</strong> is crossed by DF2 and DF3, marking the transition from
+user-controlled content to server-side processing. <strong>TB4</strong> is crossed by DF6, where the authenticated
+session is evaluated against the retrieval authorization logic.
+</p>
+
+<h3>9.4 Architectural Assumptions</h3>
+<p>
+The DFD assumes: (a) the Web Frontend Interface is a thin client that forwards requests without
+independent security logic; (b) the Backend File Processing Service is the sole writer to the Server
+Storage Repository for upload operations; (c) the File Retrieval Handler is the sole reader for
+download operations; (d) the File Validation Module interacts only with the Backend File Processing
+Service; (e) no intermediate proxies, content delivery networks, or API gateways are described;
+(f) user authentication is established prior to file operations and is represented as an authenticated
+session context rather than a separate authentication flow.
+</p>
+
+<!-- ============================================================ -->
+<h2>10. STRIDE Applicability Matrix</h2>
+<!-- ============================================================ -->
+
+<p>The following matrix identifies which STRIDE categories are <em>potentially applicable</em> to each component,
+data flow, and trust boundary. No specific threats are generated — only applicability is indicated.</p>
+
+<h3>10.1 Components</h3>
+<table>
+<tr>
+  <th>Component</th>
+  <th><span class="badge badge-s">S</span> Spoofing</th>
+  <th><span class="badge badge-t">T</span> Tampering</th>
+  <th><span class="badge badge-r">R</span> Repudiation</th>
+  <th><span class="badge badge-i">I</span> Info&nbsp;Disclosure</th>
+  <th><span class="badge badge-d">D</span> Denial&nbsp;of&nbsp;Service</th>
+  <th><span class="badge badge-e">E</span> Elevation&nbsp;of&nbsp;Privilege</th>
+</tr>
+<tr>
+  <td><strong>Web Frontend Interface</strong></td>
+  <td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>—</td>
+</tr>
+<tr>
+  <td><strong>Backend File Processing Service</strong></td>
+  <td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td>
+</tr>
+<tr>
+  <td><strong>File Validation Module</strong></td>
+  <td>—</td><td>✔</td><td>—</td><td>✔</td><td>✔</td><td>✔</td>
+</tr>
+<tr>
+  <td><strong>Server Storage Repository</strong></td>
+  <td>—</td><td>✔</td><td>—</td><td>✔</td><td>✔</td><td>✔</td>
+</tr>
+<tr>
+  <td><strong>File Retrieval Handler</strong></td>
+  <td>✔</td><td>✔</td><td>—</td><td>✔</td><td>✔</td><td>✔</td>
+</tr>
+</table>
+
+<h3>10.2 Data Flows</h3>
+<table>
+<tr>
+  <th>Data Flow</th>
+  <th><span class="badge badge-s">S</span> Spoofing</th>
+  <th><span class="badge badge-t">T</span> Tampering</th>
+  <th><span class="badge badge-r">R</span> Repudiation</th>
+  <th><span class="badge badge-i">I</span> Info&nbsp;Disclosure</th>
+  <th><span class="badge badge-d">D</span> Denial&nbsp;of&nbsp;Service</th>
+  <th><span class="badge badge-e">E</span> Elevation&nbsp;of&nbsp;Privilege</th>
+</tr>
+<tr>
+  <td><strong>DF1</strong> — File upload submission (User → Frontend)</td>
+  <td>—</td><td>✔</td><td>—</td><td>✔</td><td>—</td><td>—</td>
+</tr>
+<tr>
+  <td><strong>DF2</strong> — Forwarded file (Frontend → Backend Service)</td>
+  <td>—</td><td>✔</td><td>—</td><td>✔</td><td>✔</td><td>—</td>
+</tr>
+<tr>
+  <td><strong>DF3</strong> — File for validation (Backend Service → Validation Module)</td>
+  <td>—</td><td>✔</td><td>—</td><td>✔</td><td>✔</td><td>—</td>
+</tr>
+<tr>
+  <td><strong>DF4</strong> — Validation result (Validation Module → Backend Service)</td>
+  <td>—</td><td>✔</td><td>—</td><td>—</td><td>—</td><td>✔</td>
+</tr>
+<tr>
+  <td><strong>DF5</strong> — Validated file + metadata (Backend Service → Storage)</td>
+  <td>—</td><td>✔</td><td>—</td><td>✔</td><td>✔</td><td>—</td>
+</tr>
+<tr>
+  <td><strong>DF6</strong> — Download request + file reference (User → Retrieval Handler)</td>
+  <td>✔</td><td>✔</td><td>—</td><td>✔</td><td>✔</td><td>✔</td>
+</tr>
+<tr>
+  <td><strong>DF7</strong> — File reference identifier (Storage → Backend Service)</td>
+  <td>—</td><td>✔</td><td>—</td><td>✔</td><td>—</td><td>—</td>
+</tr>
+<tr>
+  <td><strong>DF8</strong> — Retrieved file (Retrieval Handler → User)</td>
+  <td>—</td><td>✔</td><td>—</td><td>✔</td><td>—</td><td>—</td>
+</tr>
+</table>
+
+<h3>10.3 Trust Boundaries</h3>
+<table>
+<tr>
+  <th>Trust Boundary</th>
+  <th><span class="badge badge-s">S</span> Spoofing</th>
+  <th><span class="badge badge-t">T</span> Tampering</th>
+  <th><span class="badge badge-r">R</span> Repudiation</th>
+  <th><span class="badge badge-i">I</span> Info&nbsp;Disclosure</th>
+  <th><span class="badge badge-d">D</span> Denial&nbsp;of&nbsp;Service</th>
+  <th><span class="badge badge-e">E</span> Elevation&nbsp;of&nbsp;Privilege</th>
+</tr>
+<tr>
+  <td><strong>TB1</strong> — External Browser ↔ Internal Backend Service</td>
+  <td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>—</td>
+</tr>
+<tr>
+  <td><strong>TB2</strong> — Validation Logic ↔ Persistent Storage</td>
+  <td>—</td><td>✔</td><td>—</td><td>✔</td><td>✔</td><td>✔</td>
+</tr>
+<tr>
+  <td><strong>TB3</strong> — User-Controlled Content ↔ Server-Side Handling</td>
+  <td>—</td><td>✔</td><td>—</td><td>✔</td><td>✔</td><td>✔</td>
+</tr>
+<tr>
+  <td><strong>TB4</strong> — Authenticated Session ↔ Retrieval Authorization</td>
+  <td>✔</td><td>—</td><td>—</td><td>✔</td><td>—</td><td>✔</td>
+</tr>
+</table>
+
+<div class="note">
+<strong>Note:</strong> This matrix indicates <em>applicability</em> only — the presence of a checkmark means the STRIDE category
+is architecturally relevant to that element and should be considered during threat enumeration. It does
+not constitute a threat or vulnerability finding.
+</div>
+
+<div class="footer">
+  Scenario 2 — Web-Based File Management Application — Scenario Package<br>
+  Architecture-Level Documentation · No Implementation Assumptions · STRIDE-Ready
+</div>
+
+</body>
+</html>
