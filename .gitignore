@@ -1,20 +1,22 @@
-# LaTeX files to ignore
+# LaTeX build files
 *.aux
 *.log
-*.toc
 *.out
-*.lof
-*.lot
+*.toc
+*.synctex.gz
 *.bbl
 *.blg
 *.fls
 *.fdb_latexmk
-*.synctex.gz
 *.pdfsync
 *.bcf
 *.run.xml
 
-# System files
+# Build folders
+build/
+bin/
+
+# Temporary and system files
 .DS_Store
 .DS_Store?
 ._*
@@ -22,20 +24,18 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+*.swp
+*~
+*.bak
 
 # IDEs and Editors
 .vscode/
 .idea/
-*.swp
-*~
-*.bak
 
 # Secrets and Keys
 .env
 *.pem
 *.key
-*.cert
-*.pkcs12
 
-# Note: Research data (.txt, .csv, .xlsx, .pdf, .png, .jpg, .json, .tm7, .html) is NOT ignored
-# to ensure the thesis is reproducible and all raw outputs are committed.
+# We DO NOT ignore thesis output files (.pdf) or data files (.csv, .json, .png, .tm7) 
+# because they are required for reproducible evaluation workflows.
