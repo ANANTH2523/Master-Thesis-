@@ -299,29 +299,6 @@ support automated security threat identification.
 
 ---
 
-# Research Methodology
-
-The study follows an empirical comparative research methodology.
-
-The evaluation process consists of:
-
-System Scenario Selection
-      ↓
-Architecture Preparation
-      ↓
-Threat Generation
-      ↓
-Threat Collection
-      ↓
-Threat Normalization
-      ↓
-Comparative Analysis
-      ↓
-Evaluation of Strengths and Limitations
-
-
----
-
 # Experimental Scenarios
 
 The study evaluates multiple software system scenarios containing different
@@ -380,56 +357,6 @@ Examples:
 - Insecure output handling
 - Excessive model authority
 - Data poisoning
-
-
----
-
-# Repository Structure
-
-
-Master-Thesis-
-│
-├── Thesis_Documentation/
-│   ├── main.tex
-│   ├── chapters/
-│   ├── figures/
-│   └── thesis-refs.bib
-│
-├── Architectures/
-│   ├── Scenario_1/
-│   ├── Scenario_2/
-│   └── Scenario_3/
-│
-├── Classical_Tools/
-│
-│   ├── OWASP_Threat_Dragon/
-│   │
-│   └── Microsoft_Threat_Modeling_Tool/
-│
-├── LLM_Approaches/
-│
-│   ├── ChatGPT/
-│   ├── Ollama/
-│   └── ThreMoLIA/
-│
-├── Analysis/
-│
-│   ├── Master_Comparison_Spreadsheet.xlsx
-│   ├── Threat_Mapping/
-│   ├── Evaluation_Tables/
-│   └── Graphs/
-│
-├── Literature/
-│   ├── Research_Papers/
-│   ├── Notes/
-│   └── References/
-│
-├── Meetings/
-│   ├── Supervisor_Feedback/
-│   └── Meeting_Notes/
-│
-└── README.md
-
 
 ---
 
