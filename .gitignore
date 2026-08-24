@@ -1,0 +1,41 @@
+# LaTeX files to ignore
+*.aux
+*.log
+*.toc
+*.out
+*.lof
+*.lot
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.pdfsync
+*.bcf
+*.run.xml
+
+# System files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*~
+*.bak
+
+# Secrets and Keys
+.env
+*.pem
+*.key
+*.cert
+*.pkcs12
+
+# Note: Research data (.txt, .csv, .xlsx, .pdf, .png, .jpg, .json, .tm7, .html) is NOT ignored
+# to ensure the thesis is reproducible and all raw outputs are committed.

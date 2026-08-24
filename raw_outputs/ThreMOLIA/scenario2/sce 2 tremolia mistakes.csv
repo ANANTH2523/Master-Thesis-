@@ -1,0 +1,70 @@
+﻿id,description,type,valid
+2,Incorrect OWASP Top 10 2025 category,Categorization,true
+2,Incorrect OWASP Top 10 2025 category,Categorization,true
+4,Incorrect OWASP Top 10 2025 category,Categorization,true
+6,Incorrect OWASP Top 10 2025 category,Categorization,true
+9,Incorrect OWASP Top 10 2025 category,Categorization,true
+1,Unsupported element type,Categorization,true
+2,Unsupported element type,Categorization,true
+1,Unsupported element type,Categorization,true
+2,Unsupported element type,Categorization,true
+1,Unsupported element type,Categorization,true
+2,Unsupported element type,Categorization,true
+3,Unsupported element type,Categorization,true
+4,Unsupported element type,Categorization,true
+5,Unsupported element type,Categorization,true
+6,Unsupported element type,Categorization,true
+7,Unsupported element type,Categorization,true
+8,Unsupported element type,Categorization,true
+9,Unsupported element type,Categorization,true
+10,Unsupported element type,Categorization,true
+11,Unsupported element type,Categorization,true
+12,Unsupported element type,Categorization,true
+13,Unsupported element type,Categorization,true
+14,Unsupported element type,Categorization,true
+15,Unsupported element type,Categorization,true
+16,Unsupported element type,Categorization,true
+1,Potentially unrelated OWASP Top 10 2025 category,Embedding,true
+1,Potentially unrelated MITRE ATT&CK category,Embedding,true
+1,Potentially unrelated MITRE ATLAS category,Embedding,true
+2,Potentially unrelated OWASP Top 10 2025 category,Embedding,true
+2,Potentially unrelated MITRE ATT&CK category,Embedding,true
+2,Potentially unrelated MITRE ATLAS category,Embedding,true
+1,Potentially unrelated OWASP Top 10 2025 category,Embedding,true
+1,Potentially unrelated MITRE ATT&CK category,Embedding,true
+1,Potentially unrelated MITRE ATLAS category,Embedding,true
+2,Potentially unrelated MITRE ATT&CK category,Embedding,true
+1,Potentially unrelated OWASP Top 10 2025 category,Embedding,true
+1,Potentially unrelated MITRE ATT&CK category,Embedding,true
+1,Potentially unrelated MITRE ATLAS category,Embedding,true
+2,Potentially unrelated MITRE ATT&CK category,Embedding,true
+3,Potentially unrelated OWASP Top 10 2025 category,Embedding,true
+3,Potentially unrelated MITRE ATT&CK category,Embedding,true
+3,Potentially unrelated MITRE ATLAS category,Embedding,true
+4,Potentially unrelated MITRE ATT&CK category,Embedding,true
+4,Potentially unrelated MITRE ATLAS category,Embedding,true
+5,Potentially unrelated OWASP Top 10 2025 category,Embedding,true
+5,Potentially unrelated MITRE ATT&CK category,Embedding,true
+5,Potentially unrelated MITRE ATLAS category,Embedding,true
+6,Potentially unrelated MITRE ATT&CK category,Embedding,true
+6,Potentially unrelated MITRE ATLAS category,Embedding,true
+7,Potentially unrelated MITRE ATT&CK category,Embedding,true
+7,Potentially unrelated MITRE ATLAS category,Embedding,true
+8,Potentially unrelated MITRE ATT&CK category,Embedding,true
+8,Potentially unrelated MITRE ATLAS category,Embedding,true
+9,Potentially unrelated MITRE ATT&CK category,Embedding,true
+10,Potentially unrelated OWASP Top 10 2025 category,Embedding,true
+10,Potentially unrelated MITRE ATT&CK category,Embedding,true
+11,Potentially unrelated OWASP Top 10 2025 category,Embedding,true
+11,Potentially unrelated MITRE ATT&CK category,Embedding,true
+12,Potentially unrelated MITRE ATT&CK category,Embedding,true
+13,Potentially unrelated OWASP Top 10 2025 category,Embedding,true
+13,Potentially unrelated MITRE ATT&CK category,Embedding,true
+13,Potentially unrelated MITRE ATLAS category,Embedding,true
+14,Potentially unrelated OWASP Top 10 2025 category,Embedding,true
+14,Potentially unrelated MITRE ATT&CK category,Embedding,true
+15,Potentially unrelated OWASP Top 10 2025 category,Embedding,true
+15,Potentially unrelated MITRE ATT&CK category,Embedding,true
+16,Potentially unrelated OWASP Top 10 2025 category,Embedding,true
+16,Potentially unrelated MITRE ATT&CK category,Embedding,true
+16,Potentially unrelated MITRE ATLAS category,Embedding,true

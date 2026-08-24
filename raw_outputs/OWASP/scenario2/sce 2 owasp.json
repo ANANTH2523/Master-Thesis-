@@ -1,0 +1,3213 @@
+{
+  "version": "2.6.2",
+  "summary": {
+    "title": "Scenario 2 - File Management System",
+    "owner": "Ananth Chowdary Ramineni",
+    "description": "Web-based file management system allowing authenticated users to upload, validate, store, and retrieve files through an application server connected to a backend storage database.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "Scenario 2 – File Management DFD",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": [
+          {
+            "position": {
+              "x": 40,
+              "y": 70.00000000000006
+            },
+            "size": {
+              "width": 130,
+              "height": 70
+            },
+            "attrs": {
+              "text": {
+                "text": "EE1\nEnd User\n(untrusted external client)"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 1,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "238f292e-70d8-401c-8a1e-820d38896bd0"
+                },
+                {
+                  "group": "right",
+                  "id": "df9836e1-506c-4518-978b-43585d14ab02"
+                },
+                {
+                  "group": "bottom",
+                  "id": "d133aa1c-37ce-4da4-a293-1debe9829ca4"
+                },
+                {
+                  "group": "left",
+                  "id": "9e1ee8f6-b25e-4be8-ad41-c367af5038fc"
+                }
+              ]
+            },
+            "id": "55c45f50-e707-4edf-8380-5323282d5ccf",
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE1\nEnd User\n(untrusted external client)",
+              "description": "Represents:\n- User uploading files\n- User requesting files\n- User asking questions about documents",
+              "isTrustBoundary": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "providesAuthentication": true,
+              "threats": [
+                {
+                  "id": "aa981f96-b2c5-42b6-885d-7f25f2689d51",
+                  "title": "CAPTCHA defeat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "See OWASP Automated Threat #9:\nAutomation is used in an attempt to analyse and determination the answers to CAPTCHA tests and related puzzles",
+                  "mitigation": "Defences include guarding against automation, unguessable CAPTCHA and proper enforcement of behavioral workflow",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": ""
+                },
+                {
+                  "id": "ca6dcefb-d2b5-41de-8f52-8fdc53e71150",
+                  "title": "Credential stuffing",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "See OWASP Automated Threat #8:\nLists of stolen authentication credentials are tested against the application’s authentication mechanisms to identify whether users have re-used the same login credentials",
+                  "mitigation": "Defences against Credential Stuffing are described in the OWASP Credential Stuffing Prevention Cheat Sheet, Multi-Factor Authentication being a primary counter-measure",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 2,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 0,
+                "repudiation": 0
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 373,
+              "y": 60.00000000000006
+            },
+            "size": {
+              "width": 140,
+              "height": 140
+            },
+            "attrs": {
+              "text": {
+                "text": "P1 Web Frontend Interface"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 2,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "8a65b07a-4be3-4a8d-a43c-f6f7af6bcd90"
+                },
+                {
+                  "group": "right",
+                  "id": "18fdd501-fdd5-49da-a5dd-f7be200d06a5"
+                },
+                {
+                  "group": "bottom",
+                  "id": "0b8f1538-f130-4c97-8a8a-f74a5444cd94"
+                },
+                {
+                  "group": "left",
+                  "id": "712d827a-65bd-4d96-8148-4d85b05a248f"
+                }
+              ]
+            },
+            "id": "d3cc9b5f-ddfd-4b80-9738-4ed7a0a4e71b",
+            "data": {
+              "type": "tm.Process",
+              "name": "P1 Web Frontend Interface",
+              "description": "Handles:\n- File upload interface\n- File download interface\n- User document questions\n- Displaying AI responses",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": true,
+              "privilegeLevel": "Medium",
+              "threats": [
+                {
+                  "id": "8c11c853-186a-47b7-bbb6-77e82cfc7cd7",
+                  "title": "Least privilege",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "If a process is comprimised and under control of a malicious actor, horizontal/lateral elevation of privilege can be used to comprimise other processes",
+                  "mitigation": "Processes should run with least privilege that is practical, to minimise the impact of horizontal elevation of privilege",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 3,
+                  "score": ""
+                },
+                {
+                  "id": "2d325b7f-748f-45cb-9b64-cdb739a2069d",
+                  "title": "Expedition",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "See OWASP Automated Threat #6:\nUsing speed to violate explicit or implicit assumptions about the application’s normal use to achieve unfair individual gain",
+                  "mitigation": "Defences include providing enforcement of behavioral workflow and anti-automation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": ""
+                },
+                {
+                  "id": "93f9ce37-439f-4c86-abad-407c53144449",
+                  "title": "Vulnerability scanning",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "See OWASP Automated Threat #14:\nSystematic enumeration and examination in order to find weaknesses and points where a security vulnerability might exist",
+                  "mitigation": "Defence includes providing anti-automation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 5,
+                  "score": ""
+                },
+                {
+                  "id": "c42ab1fc-ee63-4e7b-b401-61285c68297a",
+                  "title": "Denial of Service",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "See OWASP Automated Threat #15:\nUsage may resemble legitimate application usage but leads to exhaustion of resources",
+                  "mitigation": "Mitigation or prevention such as providing backoff, resource management and avoiding forced deadlock",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": ""
+                },
+                {
+                  "id": "8becb37f-0308-4e1c-8678-2797f8ded59a",
+                  "title": "Footprinting",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "See OWASP Automated Threat #18:\nInformation gathering with the objective of learning as much as possible about the composition, configuration and security mechanisms of the application",
+                  "mitigation": "Defences include shutting down unnecessary services/ports and excluding information that could identify and compromise security of the organisation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 7,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 0,
+                "tampering": 1,
+                "repudiation": 0,
+                "informationDisclosure": 2,
+                "denialOfService": 0,
+                "elevationOfPrivilege": 2
+              }
+            },
+            "children": []
+          },
+          {
+            "position": {
+              "x": 668,
+              "y": 40
+            },
+            "size": {
+              "width": 220,
+              "height": 120
+            },
+            "attrs": {
+              "text": {
+                "text": "P2 File Management Service"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 3,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "8a65b07a-4be3-4a8d-a43c-f6f7af6bcd90"
+                },
+                {
+                  "group": "right",
+                  "id": "18fdd501-fdd5-49da-a5dd-f7be200d06a5"
+                },
+                {
+                  "group": "bottom",
+                  "id": "0b8f1538-f130-4c97-8a8a-f74a5444cd94"
+                },
+                {
+                  "group": "left",
+                  "id": "712d827a-65bd-4d96-8148-4d85b05a248f"
+                }
+              ]
+            },
+            "id": "30c3288a-8acb-44f9-a7c8-e565f3bfa769",
+            "data": {
+              "type": "tm.Process",
+              "name": "P2 File Management Service",
+              "description": "Controls:\n- File access\n- Authorization decisions\n- File lifecycle\n- Storage interaction\nIt",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": true,
+              "privilegeLevel": "High",
+              "threats": [
+                {
+                  "id": "3aa9ca2a-0a53-4232-a0af-1aa6b7bcc29f",
+                  "title": "Least privilege",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "If a process is comprimised and under control of a malicious actor, horizontal/lateral elevation of privilege can be used to comprimise other processes",
+                  "mitigation": "Processes should run with least privilege that is practical, to minimise the impact of horizontal elevation of privilege",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 8,
+                  "score": ""
+                },
+                {
+                  "id": "f6b118c9-9f25-4808-8a34-0dd634f062ee",
+                  "title": "Expedition",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "See OWASP Automated Threat #6:\nUsing speed to violate explicit or implicit assumptions about the application’s normal use to achieve unfair individual gain",
+                  "mitigation": "Defences include providing enforcement of behavioral workflow and anti-automation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 9,
+                  "score": ""
+                },
+                {
+                  "id": "7386a31a-9b8f-4caa-8e0e-b1575866cc9d",
+                  "title": "Vulnerability scanning",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "See OWASP Automated Threat #14:\nSystematic enumeration and examination in order to find weaknesses and points where a security vulnerability might exist",
+                  "mitigation": "Defence includes providing anti-automation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 10,
+                  "score": ""
+                },
+                {
+                  "id": "5b63f81a-7d93-41af-a824-5d2afa305fd8",
+                  "title": "Denial of Service",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "See OWASP Automated Threat #15:\nUsage may resemble legitimate application usage but leads to exhaustion of resources",
+                  "mitigation": "Mitigation or prevention such as providing backoff, resource management and avoiding forced deadlock",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 11,
+                  "score": ""
+                },
+                {
+                  "id": "57aa9742-435b-4166-944d-fc6e88df8414",
+                  "title": "Footprinting",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "See OWASP Automated Threat #18:\nInformation gathering with the objective of learning as much as possible about the composition, configuration and security mechanisms of the application",
+                  "mitigation": "Defences include shutting down unnecessary services/ports and excluding information that could identify and compromise security of the organisation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 12,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 0,
+                "tampering": 1,
+                "repudiation": 0,
+                "informationDisclosure": 2,
+                "denialOfService": 0,
+                "elevationOfPrivilege": 2
+              }
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Download Request",
+              "description": "User requests retrieval of an uploaded file.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [
+                {
+                  "id": "0f704e00-0891-4448-a766-ccdff2a3b1e0",
+                  "title": "Vulnerable transport protocol",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "Older transport protocols are vulnerable and have known vulnerabilities",
+                  "mitigation": "Use up to date cryptography and transport protocols",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 29,
+                  "score": ""
+                },
+                {
+                  "id": "6fedd152-db2c-4dcd-9d7e-7a51927541eb",
+                  "title": "Fingerprinting",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "See OWASP Automated Threat #4:\nSpecific requests are sent to the application eliciting information in order to profile the application",
+                  "mitigation": "Defence includes restricting what information is provided, for example version numbers and package details",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 30,
+                  "score": ""
+                }
+              ],
+              "trustBoundaryIds": [],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 2,
+                "denialOfService": 0
+              }
+            },
+            "labels": [
+              "Download Request"
+            ],
+            "id": "cc031e21-88c8-4ba4-9390-5f92711f316f",
+            "source": {
+              "cell": "55c45f50-e707-4edf-8380-5323282d5ccf",
+              "port": "df9836e1-506c-4518-978b-43585d14ab02"
+            },
+            "target": {
+              "cell": "a19b7285-d07c-4e82-a88c-753e3a2aacce",
+              "port": "712d827a-65bd-4d96-8148-4d85b05a248f"
+            },
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Retrieved File",
+              "description": "Returns requested file to authenticated user.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [
+                {
+                  "id": "366ac980-cb43-4de0-9b81-04633c6545f4",
+                  "title": "Vulnerable transport protocol",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "Older transport protocols are vulnerable and have known vulnerabilities",
+                  "mitigation": "Use up to date cryptography and transport protocols",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 31,
+                  "score": ""
+                },
+                {
+                  "id": "a2947329-1066-41c0-ad32-f8fa0af4fd7e",
+                  "title": "Fingerprinting",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "See OWASP Automated Threat #4:\nSpecific requests are sent to the application eliciting information in order to profile the application",
+                  "mitigation": "Defence includes restricting what information is provided, for example version numbers and package details",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 32,
+                  "score": ""
+                }
+              ],
+              "trustBoundaryIds": [],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 2,
+                "denialOfService": 0
+              }
+            },
+            "labels": [
+              "Retrieved File"
+            ],
+            "id": "cb3225ef-ddf6-4663-b9b0-e6aad63256f6",
+            "source": {
+              "cell": "55c45f50-e707-4edf-8380-5323282d5ccf",
+              "port": "d133aa1c-37ce-4da4-a293-1debe9829ca4"
+            },
+            "target": {
+              "cell": "a19b7285-d07c-4e82-a88c-753e3a2aacce",
+              "port": "0b8f1538-f130-4c97-8a8a-f74a5444cd94"
+            },
+            "vertices": [
+              {
+                "x": 110,
+                "y": 230
+              },
+              {
+                "x": 200,
+                "y": 330
+              },
+              {
+                "x": 220,
+                "y": 350
+              }
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Internet-to-Web Application Trust Boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false,
+              "crossingFlows": [],
+              "containedElements": []
+            },
+            "labels": [
+              "Internet-to-Web Application Trust Boundary"
+            ],
+            "id": "a4ec519a-a1e4-46e8-950c-03b1db1cab27",
+            "source": {
+              "cell": "55c45f50-e707-4edf-8380-5323282d5ccf",
+              "port": "df9836e1-506c-4518-978b-43585d14ab02"
+            },
+            "target": {
+              "cell": "d3cc9b5f-ddfd-4b80-9738-4ed7a0a4e71b",
+              "port": "0b8f1538-f130-4c97-8a8a-f74a5444cd94"
+            },
+            "vertices": [
+              {
+                "x": 300,
+                "y": 220
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "File retrieval request",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "File retrieval request"
+            ],
+            "id": "35f0c6ea-9d45-41f4-9799-2442c0d193c6",
+            "source": {
+              "x": 110,
+              "y": 70
+            },
+            "target": {
+              "cell": "d3cc9b5f-ddfd-4b80-9738-4ed7a0a4e71b",
+              "port": "712d827a-65bd-4d96-8148-4d85b05a248f"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "File Upload Submission",
+              "description": "Authenticated user uploads a file through the browser.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [
+                {
+                  "id": "f880cb81-e27f-4e98-893d-420d98d7c98f",
+                  "title": "Vulnerable transport protocol",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "Older transport protocols are vulnerable and have known vulnerabilities",
+                  "mitigation": "Use up to date cryptography and transport protocols",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 26,
+                  "score": ""
+                },
+                {
+                  "id": "7630f02a-3b06-41fd-ba92-9e6e04af3dd9",
+                  "title": "Fingerprinting",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "See OWASP Automated Threat #4:\nSpecific requests are sent to the application eliciting information in order to profile the application",
+                  "mitigation": "Defence includes restricting what information is provided, for example version numbers and package details",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 27,
+                  "score": ""
+                }
+              ],
+              "trustBoundaryIds": [],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 2,
+                "denialOfService": 0
+              }
+            },
+            "labels": [
+              "File Upload Submission"
+            ],
+            "id": "07a96dfd-87c7-49a7-9c9c-09d1c5ef117a",
+            "source": {
+              "cell": "55c45f50-e707-4edf-8380-5323282d5ccf",
+              "port": "238f292e-70d8-401c-8a1e-820d38896bd0"
+            },
+            "target": {
+              "cell": "d3cc9b5f-ddfd-4b80-9738-4ed7a0a4e71b",
+              "port": "712d827a-65bd-4d96-8148-4d85b05a248f"
+            },
+            "vertices": [
+              {
+                "x": 280,
+                "y": 10
+              },
+              {
+                "x": 280,
+                "y": 95
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Document Question",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Document Question"
+            ],
+            "id": "3b232eff-c243-469b-9dea-a2f46138fba4",
+            "source": {
+              "cell": "55c45f50-e707-4edf-8380-5323282d5ccf",
+              "port": "df9836e1-506c-4518-978b-43585d14ab02"
+            },
+            "target": {
+              "cell": "d3cc9b5f-ddfd-4b80-9738-4ed7a0a4e71b",
+              "port": "712d827a-65bd-4d96-8148-4d85b05a248f"
+            },
+            "vertices": [
+              {
+                "x": 280,
+                "y": 160
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Upload status\n",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Upload status\n"
+            ],
+            "id": "c59f2aa0-2164-4cc7-9c4f-2986a922d16b",
+            "source": {
+              "x": 440,
+              "y": 210
+            },
+            "target": {
+              "cell": "55c45f50-e707-4edf-8380-5323282d5ccf",
+              "port": "d133aa1c-37ce-4da4-a293-1debe9829ca4"
+            },
+            "vertices": [
+              {
+                "x": 440,
+                "y": 300
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Retrieved file",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Retrieved file"
+            ],
+            "id": "7a18c995-9e17-43e8-a5c4-57d6bf6bd395",
+            "source": {
+              "cell": "d3cc9b5f-ddfd-4b80-9738-4ed7a0a4e71b",
+              "port": "0b8f1538-f130-4c97-8a8a-f74a5444cd94"
+            },
+            "target": {
+              "cell": "55c45f50-e707-4edf-8380-5323282d5ccf",
+              "port": "d133aa1c-37ce-4da4-a293-1debe9829ca4"
+            },
+            "vertices": [
+              {
+                "x": 310,
+                "y": 200
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Prompt+ Approved Context",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Prompt+ Approved Context"
+            ],
+            "id": "f0650f1b-b2c8-4907-b2bd-cf8f2bac8876",
+            "source": {
+              "cell": "a19b7285-d07c-4e82-a88c-753e3a2aacce",
+              "port": "8a65b07a-4be3-4a8d-a43c-f6f7af6bcd90"
+            },
+            "target": {
+              "cell": "bba00ef6-bc6a-4b4b-a24a-d24d8a832507",
+              "port": "e7315b43-c5b6-4b20-b32f-c24fa17ca7b9"
+            },
+            "vertices": [
+              {
+                "x": 540,
+                "y": 430
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "LLm Prompt Request",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "LLm Prompt Request"
+            ],
+            "id": "4233e705-5b91-426e-9d80-e6a1d548657a",
+            "source": {
+              "cell": "bba00ef6-bc6a-4b4b-a24a-d24d8a832507",
+              "port": "83fa08a1-c2f0-434c-ad4c-a96233c9898e"
+            },
+            "target": {
+              "cell": "ae7cb40d-448b-449e-8f70-cd71dfbeb554",
+              "port": "def4fee0-76d6-421f-82a8-84295f0cba60"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Retrieved File Content",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Retrieved File Content"
+            ],
+            "id": "b6ddaf24-823a-4eea-8c61-f2a0b7543752",
+            "source": {
+              "x": 1200,
+              "y": 30
+            },
+            "target": {
+              "cell": "30c3288a-8acb-44f9-a7c8-e565f3bfa769",
+              "port": "8a65b07a-4be3-4a8d-a43c-f6f7af6bcd90"
+            },
+            "vertices": [
+              {
+                "x": 1000,
+                "y": -90
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Authenticated FIle Access Request",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Authenticated FIle Access Request"
+            ],
+            "id": "2c5e1ade-99de-4be1-b91c-a70d01b21453",
+            "source": {
+              "cell": "d3cc9b5f-ddfd-4b80-9738-4ed7a0a4e71b",
+              "port": "18fdd501-fdd5-49da-a5dd-f7be200d06a5"
+            },
+            "target": {
+              "cell": "30c3288a-8acb-44f9-a7c8-e565f3bfa769",
+              "port": "712d827a-65bd-4d96-8148-4d85b05a248f"
+            },
+            "vertices": [
+              {
+                "x": 600,
+                "y": 130
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Authorization Decision",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Authorization Decision"
+            ],
+            "id": "a7409f92-7cca-4173-b404-37ff1b9f914d",
+            "source": {
+              "cell": "435b1004-0107-4f42-afec-0797177e8611",
+              "port": "f0f45a78-1906-4a7c-ac51-47685bafc9c2"
+            },
+            "target": {
+              "cell": "30c3288a-8acb-44f9-a7c8-e565f3bfa769",
+              "port": "18fdd501-fdd5-49da-a5dd-f7be200d06a5"
+            },
+            "vertices": [
+              {
+                "x": 1100,
+                "y": 200
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Stored FIle Confirmation",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Stored FIle Confirmation"
+            ],
+            "id": "46bf0838-9f15-4fb0-9bd9-4ce64c74e069",
+            "source": {
+              "cell": "0c278098-7001-4913-b1c9-f329e4267045",
+              "port": "f0f45a78-1906-4a7c-ac51-47685bafc9c2"
+            },
+            "target": {
+              "cell": "30c3288a-8acb-44f9-a7c8-e565f3bfa769",
+              "port": "8a65b07a-4be3-4a8d-a43c-f6f7af6bcd90"
+            },
+            "vertices": [
+              {
+                "x": 1040,
+                "y": 10
+              },
+              {
+                "x": 980,
+                "y": 10
+              }
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Frontend-to-Backend Service Trust Boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false,
+              "crossingFlows": [],
+              "containedElements": []
+            },
+            "labels": [
+              "Frontend-to-Backend Service Trust Boundary"
+            ],
+            "id": "67d0892b-e013-4b85-add5-cfdaad567ab7",
+            "source": {
+              "cell": "d3cc9b5f-ddfd-4b80-9738-4ed7a0a4e71b",
+              "port": "18fdd501-fdd5-49da-a5dd-f7be200d06a5"
+            },
+            "target": {
+              "cell": "30c3288a-8acb-44f9-a7c8-e565f3bfa769",
+              "port": "0b8f1538-f130-4c97-8a8a-f74a5444cd94"
+            },
+            "vertices": [
+              {
+                "x": 540,
+                "y": 160
+              },
+              {
+                "x": 600,
+                "y": 240
+              },
+              {
+                "x": 650,
+                "y": 220
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Forwarded Uploaded File",
+              "description": "Uploaded file forwarded for backend processing.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": [
+                {
+                  "id": "ca5a75b5-127e-456f-a41b-8e3b95f48bc0",
+                  "title": "Vulnerable transport protocol",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "Older transport protocols are vulnerable and have known vulnerabilities",
+                  "mitigation": "Use up to date cryptography and transport protocols",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 28,
+                  "score": ""
+                }
+              ],
+              "trustBoundaryIds": [],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0
+              }
+            },
+            "labels": [
+              "Forwarded Uploaded File"
+            ],
+            "id": "0c23c44a-fbec-4281-812f-c6e98d2a0e18",
+            "source": {
+              "cell": "d3cc9b5f-ddfd-4b80-9738-4ed7a0a4e71b",
+              "port": "8a65b07a-4be3-4a8d-a43c-f6f7af6bcd90"
+            },
+            "target": {
+              "cell": "30c3288a-8acb-44f9-a7c8-e565f3bfa769",
+              "port": "712d827a-65bd-4d96-8148-4d85b05a248f"
+            },
+            "vertices": [
+              {
+                "x": 570,
+                "y": 60
+              },
+              {
+                "x": 580,
+                "y": 50
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Authorization File Retrieval Request",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Authorization File Retrieval Request"
+            ],
+            "id": "f341bd54-2485-4cb4-940e-a71286095b08",
+            "source": {
+              "cell": "30c3288a-8acb-44f9-a7c8-e565f3bfa769",
+              "port": "8a65b07a-4be3-4a8d-a43c-f6f7af6bcd90"
+            },
+            "target": {
+              "cell": "0c278098-7001-4913-b1c9-f329e4267045",
+              "port": "f0f45a78-1906-4a7c-ac51-47685bafc9c2"
+            },
+            "vertices": [
+              {
+                "x": 1100,
+                "y": -50
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Authorization Verification Request",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Authorization Verification Request"
+            ],
+            "id": "97439127-2bba-4390-8c11-7f0274cfe5d8",
+            "source": {
+              "cell": "30c3288a-8acb-44f9-a7c8-e565f3bfa769",
+              "port": "18fdd501-fdd5-49da-a5dd-f7be200d06a5"
+            },
+            "target": {
+              "cell": "435b1004-0107-4f42-afec-0797177e8611",
+              "port": "5bd40b41-5961-415f-b34b-17cb24c169da"
+            },
+            "vertices": [
+              {
+                "x": 1070,
+                "y": 150
+              },
+              {
+                "x": 1110,
+                "y": 150
+              },
+              {
+                "x": 1130,
+                "y": 170
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Validated File Storage Request",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Validated File Storage Request"
+            ],
+            "id": "8a55e747-a4c9-4659-97ac-e6b1ff1ca669",
+            "source": {
+              "cell": "30c3288a-8acb-44f9-a7c8-e565f3bfa769",
+              "port": "18fdd501-fdd5-49da-a5dd-f7be200d06a5"
+            },
+            "target": {
+              "cell": "0c278098-7001-4913-b1c9-f329e4267045",
+              "port": "c420b1c6-0f40-4401-b610-a85db5be5df2"
+            },
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Validation Result",
+              "description": "Validation module returns pass or fail.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "Internal API",
+              "threats": [
+                {
+                  "id": "ee9f01c8-871e-4284-bf19-61c26e00bf79",
+                  "title": "No Suggestions available",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "",
+                  "description": "No suggestions available for this context. Add one manually please",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 36,
+                  "score": ""
+                }
+              ],
+              "trustBoundaryIds": [],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 0
+              }
+            },
+            "labels": [
+              "Validation Result"
+            ],
+            "id": "4a72890b-8d7a-4e15-825f-79385c29390b",
+            "source": {
+              "cell": "30c3288a-8acb-44f9-a7c8-e565f3bfa769",
+              "port": "18fdd501-fdd5-49da-a5dd-f7be200d06a5"
+            },
+            "target": {
+              "cell": "297b0ef2-62fd-4a2a-904b-b26ef426d5c7",
+              "port": "0b8f1538-f130-4c97-8a8a-f74a5444cd94"
+            },
+            "vertices": [
+              {
+                "x": 960,
+                "y": 140
+              },
+              {
+                "x": 970,
+                "y": 160
+              },
+              {
+                "x": 1053,
+                "y": 300
+              }
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Server-side Validation Trust Boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false,
+              "crossingFlows": [],
+              "containedElements": []
+            },
+            "labels": [
+              "Server-side Validation Trust Boundary"
+            ],
+            "id": "db15faa3-e1c6-45c9-9ee8-228b2bf3e42e",
+            "source": {
+              "cell": "30c3288a-8acb-44f9-a7c8-e565f3bfa769",
+              "port": "8a65b07a-4be3-4a8d-a43c-f6f7af6bcd90"
+            },
+            "target": {
+              "cell": "297b0ef2-62fd-4a2a-904b-b26ef426d5c7",
+              "port": "8a65b07a-4be3-4a8d-a43c-f6f7af6bcd90"
+            },
+            "vertices": [
+              {
+                "x": 950,
+                "y": 20
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "File for Validation",
+              "description": "Backend sends uploaded file for validation.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "Internal API",
+              "threats": [
+                {
+                  "id": "0c1e28d6-da5c-4d8a-99b4-5e1f9f3851a7",
+                  "title": "No Suggestions available",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "",
+                  "description": "No suggestions available for this context. Add one manually please",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 35,
+                  "score": ""
+                }
+              ],
+              "trustBoundaryIds": [],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 0
+              }
+            },
+            "labels": [
+              "File for Validation"
+            ],
+            "id": "4b24e30c-5e42-4e3c-b257-df3fc87794a7",
+            "source": {
+              "cell": "30c3288a-8acb-44f9-a7c8-e565f3bfa769",
+              "port": "8a65b07a-4be3-4a8d-a43c-f6f7af6bcd90"
+            },
+            "target": {
+              "cell": "297b0ef2-62fd-4a2a-904b-b26ef426d5c7",
+              "port": "712d827a-65bd-4d96-8148-4d85b05a248f"
+            },
+            "vertices": [
+              {
+                "x": 870,
+                "y": 160
+              },
+              {
+                "x": 870,
+                "y": 180
+              },
+              {
+                "x": 890,
+                "y": 200
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Retrieved File Response",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Retrieved File Response"
+            ],
+            "id": "1d3be375-3a70-467f-b61f-4bd8f8ef5aa9",
+            "source": {
+              "x": 770,
+              "y": 30
+            },
+            "target": {
+              "cell": "d3cc9b5f-ddfd-4b80-9738-4ed7a0a4e71b",
+              "port": "8a65b07a-4be3-4a8d-a43c-f6f7af6bcd90"
+            },
+            "vertices": [
+              {
+                "x": 620,
+                "y": 10
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "AI Question request",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "AI Question request"
+            ],
+            "id": "01537da6-24d7-4924-b6c0-e7a99ae1b38d",
+            "source": {
+              "cell": "d3cc9b5f-ddfd-4b80-9738-4ed7a0a4e71b",
+              "port": "0b8f1538-f130-4c97-8a8a-f74a5444cd94"
+            },
+            "target": {
+              "cell": "a19b7285-d07c-4e82-a88c-753e3a2aacce",
+              "port": "8a65b07a-4be3-4a8d-a43c-f6f7af6bcd90"
+            },
+            "vertices": [
+              {
+                "x": 530,
+                "y": 310
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Approved Context Request",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Approved Context Request"
+            ],
+            "id": "4e724551-3144-4ccb-aac5-0571f7f396cb",
+            "source": {
+              "cell": "a19b7285-d07c-4e82-a88c-753e3a2aacce",
+              "port": "18fdd501-fdd5-49da-a5dd-f7be200d06a5"
+            },
+            "target": {
+              "cell": "30c3288a-8acb-44f9-a7c8-e565f3bfa769",
+              "port": "0b8f1538-f130-4c97-8a8a-f74a5444cd94"
+            },
+            "vertices": [
+              {
+                "x": 575,
+                "y": 360
+              },
+              {
+                "x": 650,
+                "y": 360
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Approved Document Context",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Approved Document Context"
+            ],
+            "id": "29098964-b63c-4138-ae59-8064b8c9424b",
+            "source": {
+              "cell": "30c3288a-8acb-44f9-a7c8-e565f3bfa769",
+              "port": "0b8f1538-f130-4c97-8a8a-f74a5444cd94"
+            },
+            "target": {
+              "cell": "a19b7285-d07c-4e82-a88c-753e3a2aacce",
+              "port": "8a65b07a-4be3-4a8d-a43c-f6f7af6bcd90"
+            },
+            "vertices": [
+              {
+                "x": 820,
+                "y": 350
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Generated LLM Response",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Generated LLM Response"
+            ],
+            "id": "c21366c8-eb82-4e1e-bbea-b6b1c86cbe78",
+            "source": {
+              "cell": "ae7cb40d-448b-449e-8f70-cd71dfbeb554",
+              "port": "7360cf42-6307-4e80-88b9-8a50d1143ab4"
+            },
+            "target": {
+              "cell": "bba00ef6-bc6a-4b4b-a24a-d24d8a832507",
+              "port": "a40d3124-6be4-4ee1-8b4b-92912fb9e738"
+            },
+            "vertices": [
+              {
+                "x": 940,
+                "y": 510
+              },
+              {
+                "x": 930,
+                "y": 510
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Processed AI Response",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Processed AI Response"
+            ],
+            "id": "5944119a-2820-4bdc-957f-cfaf31b0dde6",
+            "source": {
+              "cell": "bba00ef6-bc6a-4b4b-a24a-d24d8a832507",
+              "port": "a40d3124-6be4-4ee1-8b4b-92912fb9e738"
+            },
+            "target": {
+              "cell": "a19b7285-d07c-4e82-a88c-753e3a2aacce",
+              "port": "0b8f1538-f130-4c97-8a8a-f74a5444cd94"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "AI answer",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "AI answer"
+            ],
+            "id": "0f7f51f1-d15f-4810-bf85-990c05bf8cf8",
+            "source": {
+              "cell": "a19b7285-d07c-4e82-a88c-753e3a2aacce",
+              "port": "8a65b07a-4be3-4a8d-a43c-f6f7af6bcd90"
+            },
+            "target": {
+              "cell": "55c45f50-e707-4edf-8380-5323282d5ccf",
+              "port": "df9836e1-506c-4518-978b-43585d14ab02"
+            },
+            "vertices": [
+              {
+                "x": 410,
+                "y": 350
+              }
+            ]
+          },
+          {
+            "position": {
+              "x": 998,
+              "y": 240
+            },
+            "size": {
+              "width": 110,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "P3 File Validation Module"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 11,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "8a65b07a-4be3-4a8d-a43c-f6f7af6bcd90"
+                },
+                {
+                  "group": "right",
+                  "id": "18fdd501-fdd5-49da-a5dd-f7be200d06a5"
+                },
+                {
+                  "group": "bottom",
+                  "id": "0b8f1538-f130-4c97-8a8a-f74a5444cd94"
+                },
+                {
+                  "group": "left",
+                  "id": "712d827a-65bd-4d96-8148-4d85b05a248f"
+                }
+              ]
+            },
+            "id": "297b0ef2-62fd-4a2a-904b-b26ef426d5c7",
+            "data": {
+              "type": "tm.Process",
+              "name": "P3 File Validation Module",
+              "description": "Processes uploaded files:\n- File type validation\n- Malware scanning\n- Metadata validation\n- Content validation",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "Medium",
+              "threats": [
+                {
+                  "id": "4329562d-e408-48cd-83d5-896d8e2e19a0",
+                  "title": "Least privilege",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "If a process is comprimised and under control of a malicious actor, horizontal/lateral elevation of privilege can be used to comprimise other processes",
+                  "mitigation": "Processes should run with least privilege that is practical, to minimise the impact of horizontal elevation of privilege",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 13,
+                  "score": ""
+                },
+                {
+                  "id": "fc084ecc-f12b-44ce-a849-b0f0e9d69d06",
+                  "title": "Expedition",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "See OWASP Automated Threat #6:\nUsing speed to violate explicit or implicit assumptions about the application’s normal use to achieve unfair individual gain",
+                  "mitigation": "Defences include providing enforcement of behavioral workflow and anti-automation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 14,
+                  "score": ""
+                },
+                {
+                  "id": "896666e1-132d-4fb3-88a9-60f4e9702002",
+                  "title": "Vulnerability scanning",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "See OWASP Automated Threat #14:\nSystematic enumeration and examination in order to find weaknesses and points where a security vulnerability might exist",
+                  "mitigation": "Defence includes providing anti-automation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 15,
+                  "score": ""
+                },
+                {
+                  "id": "9dfc3f6f-745f-40dc-a88f-acc77289e46f",
+                  "title": "Denial of Service",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "See OWASP Automated Threat #15:\nUsage may resemble legitimate application usage but leads to exhaustion of resources",
+                  "mitigation": "Mitigation or prevention such as providing backoff, resource management and avoiding forced deadlock",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 16,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 0,
+                "tampering": 1,
+                "repudiation": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0,
+                "elevationOfPrivilege": 2
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 353,
+              "y": 390
+            },
+            "size": {
+              "width": 120,
+              "height": 130
+            },
+            "attrs": {
+              "text": {
+                "text": "AI File Assistant"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 12,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "8a65b07a-4be3-4a8d-a43c-f6f7af6bcd90"
+                },
+                {
+                  "group": "right",
+                  "id": "18fdd501-fdd5-49da-a5dd-f7be200d06a5"
+                },
+                {
+                  "group": "bottom",
+                  "id": "0b8f1538-f130-4c97-8a8a-f74a5444cd94"
+                },
+                {
+                  "group": "left",
+                  "id": "712d827a-65bd-4d96-8148-4d85b05a248f"
+                }
+              ]
+            },
+            "id": "a19b7285-d07c-4e82-a88c-753e3a2aacce",
+            "data": {
+              "type": "tm.Process",
+              "name": "AI File Assistant",
+              "description": "Provides:\n- Document summarization\n- Document question answering\n- AI-based assistance",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": true,
+              "privilegeLevel": "Medium",
+              "threats": [
+                {
+                  "id": "3cac9f94-7468-489d-8494-8e5982175c53",
+                  "title": "Least privilege",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "If a process is comprimised and under control of a malicious actor, horizontal/lateral elevation of privilege can be used to comprimise other processes",
+                  "mitigation": "Processes should run with least privilege that is practical, to minimise the impact of horizontal elevation of privilege",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 17,
+                  "score": ""
+                },
+                {
+                  "id": "55cd7855-e19d-460b-b65c-9b233a6852bf",
+                  "title": "Expedition",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "See OWASP Automated Threat #6:\nUsing speed to violate explicit or implicit assumptions about the application’s normal use to achieve unfair individual gain",
+                  "mitigation": "Defences include providing enforcement of behavioral workflow and anti-automation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 18,
+                  "score": ""
+                },
+                {
+                  "id": "e7e8b6b8-a66a-4c6a-855a-4c74a42eeae8",
+                  "title": "Vulnerability scanning",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "See OWASP Automated Threat #14:\nSystematic enumeration and examination in order to find weaknesses and points where a security vulnerability might exist",
+                  "mitigation": "Defence includes providing anti-automation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 19,
+                  "score": ""
+                },
+                {
+                  "id": "b08941e3-aec6-4ed9-9d3f-7958375e18a6",
+                  "title": "Denial of Service",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "See OWASP Automated Threat #15:\nUsage may resemble legitimate application usage but leads to exhaustion of resources",
+                  "mitigation": "Mitigation or prevention such as providing backoff, resource management and avoiding forced deadlock",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 20,
+                  "score": ""
+                },
+                {
+                  "id": "d72ed81a-1d34-42e6-82ce-0c57f2248b8a",
+                  "title": "Footprinting",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "See OWASP Automated Threat #18:\nInformation gathering with the objective of learning as much as possible about the composition, configuration and security mechanisms of the application",
+                  "mitigation": "Defences include shutting down unnecessary services/ports and excluding information that could identify and compromise security of the organisation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 21,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 0,
+                "tampering": 1,
+                "repudiation": 0,
+                "informationDisclosure": 2,
+                "denialOfService": 0,
+                "elevationOfPrivilege": 2
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 1020,
+              "y": 410
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "EE2\nExternal LLM Provider\n(third-party service outside security control)"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "a432ab93-0171-4f97-a5e7-2c964a0a6775"
+                },
+                {
+                  "group": "right",
+                  "id": "2f8fdda0-6445-4b2b-8dcd-98f4401f89d1"
+                },
+                {
+                  "group": "bottom",
+                  "id": "7360cf42-6307-4e80-88b9-8a50d1143ab4"
+                },
+                {
+                  "group": "left",
+                  "id": "def4fee0-76d6-421f-82a8-84295f0cba60"
+                }
+              ]
+            },
+            "id": "ae7cb40d-448b-449e-8f70-cd71dfbeb554",
+            "zIndex": 14,
+            "data": {
+              "type": "tm.Actor",
+              "name": "EE2\nExternal LLM Provider\n(third-party service outside security control)",
+              "description": "  Represents:\n- OpenAI API\n- Azure OpenAI\n- Other third-party LLM",
+              "isTrustBoundary": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 678,
+              "y": 395.0000000000002
+            },
+            "size": {
+              "width": 180,
+              "height": 160
+            },
+            "attrs": {
+              "text": {
+                "text": "P5\nLLM Integration Service"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "83fa08a1-c2f0-434c-ad4c-a96233c9898e"
+                },
+                {
+                  "group": "right",
+                  "id": "8d78330e-de7f-4ab9-8bda-34917c8223fa"
+                },
+                {
+                  "group": "bottom",
+                  "id": "a40d3124-6be4-4ee1-8b4b-92912fb9e738"
+                },
+                {
+                  "group": "left",
+                  "id": "e7315b43-c5b6-4b20-b32f-c24fa17ca7b9"
+                }
+              ]
+            },
+            "id": "bba00ef6-bc6a-4b4b-a24a-d24d8a832507",
+            "zIndex": 15,
+            "data": {
+              "type": "tm.Process",
+              "name": "P5\nLLM Integration Service",
+              "description": "Manages:\n- Prompt construction\n- Context filtering\n- Communication with external LLM\nSecurity purpose:\nPrevents:\n- Sending sensitive data\n- Sending unauthorized documents\n- Direct AI access",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "23b8561b-590c-4a77-82fc-538946a00709",
+                  "title": "Expedition",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "See OWASP Automated Threat #6:\nUsing speed to violate explicit or implicit assumptions about the application’s normal use to achieve unfair individual gain",
+                  "mitigation": "Defences include providing enforcement of behavioral workflow and anti-automation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 37,
+                  "score": ""
+                },
+                {
+                  "id": "8466f2ad-2a72-4124-9e71-95ff1002ea95",
+                  "title": "Vulnerability scanning",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "See OWASP Automated Threat #14:\nSystematic enumeration and examination in order to find weaknesses and points where a security vulnerability might exist",
+                  "mitigation": "Defence includes providing anti-automation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 38,
+                  "score": ""
+                },
+                {
+                  "id": "d3f4c74d-7fd3-4dff-a8ca-9a0cab2d2c67",
+                  "title": "Denial of Service",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "See OWASP Automated Threat #15:\nUsage may resemble legitimate application usage but leads to exhaustion of resources",
+                  "mitigation": "Mitigation or prevention such as providing backoff, resource management and avoiding forced deadlock",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 39,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 0,
+                "tampering": 1,
+                "repudiation": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0,
+                "elevationOfPrivilege": 1
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 1179,
+              "y": 240
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "DS2\nUser Permission Database\n"
+              },
+              "topLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "f0f45a78-1906-4a7c-ac51-47685bafc9c2"
+                },
+                {
+                  "group": "right",
+                  "id": "63831fa6-1eb5-47ad-b580-e693f2b7507b"
+                },
+                {
+                  "group": "bottom",
+                  "id": "c420b1c6-0f40-4401-b610-a85db5be5df2"
+                },
+                {
+                  "group": "left",
+                  "id": "5bd40b41-5961-415f-b34b-17cb24c169da"
+                }
+              ]
+            },
+            "id": "435b1004-0107-4f42-afec-0797177e8611",
+            "zIndex": 17,
+            "data": {
+              "type": "tm.Store",
+              "name": "DS2\nUser Permission Database\n",
+              "description": "Stores:\n- User ID\n- File ownership\n- Roles\n- Access control rules\n",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "83a61da2-37e1-4ee6-8fd5-9935acea78b4",
+                  "title": "Scraping",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "See OWASP Automated Threat #11:\nCollecting accessible data and/or processed output from the application",
+                  "mitigation": "Detect fake or compromised accounts, ensure information is accessible only with authentication and authorisation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 40,
+                  "score": ""
+                },
+                {
+                  "id": "bc9a42f8-f3ef-424b-9915-d5b0e5669517",
+                  "title": "Skewing",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "See OWASP Automated Threat #16:\nAutomated repeated clicking or requesting or submitting content, affecting application based metrics such as counts, and measures of frequency and/or rate",
+                  "mitigation": "Defences include control of interaction frequency or proper enforcement of a single unique action",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 41,
+                  "score": ""
+                },
+                {
+                  "id": "ae50f190-5eb9-4a8a-8cb3-3352f9fcb5b2",
+                  "title": "Spamming",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "See OWASP Automated Threat #17:\nStoring malicious such as malware, Iframe distribution, photographs & videos, advertisements, referrer spam and tracking/surveillance code",
+                  "mitigation": "Defences include detecting embedded malicious code, controling interaction frequency and enforcement of a single unique action",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 42,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "repudiation": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 1145,
+              "y": 40
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "P2 File Management Service"
+              },
+              "topLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "f0f45a78-1906-4a7c-ac51-47685bafc9c2"
+                },
+                {
+                  "group": "right",
+                  "id": "63831fa6-1eb5-47ad-b580-e693f2b7507b"
+                },
+                {
+                  "group": "bottom",
+                  "id": "c420b1c6-0f40-4401-b610-a85db5be5df2"
+                },
+                {
+                  "group": "left",
+                  "id": "5bd40b41-5961-415f-b34b-17cb24c169da"
+                }
+              ]
+            },
+            "id": "0c278098-7001-4913-b1c9-f329e4267045",
+            "zIndex": 18,
+            "data": {
+              "type": "tm.Store",
+              "name": "P2 File Management Service",
+              "description": "Stores:\n- Documents\n- File content\n- File metadata",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "f884a242-290f-40e2-8111-a59fd47fb266",
+                  "title": "Scraping",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "See OWASP Automated Threat #11:\nCollecting accessible data and/or processed output from the application",
+                  "mitigation": "Detect fake or compromised accounts, ensure information is accessible only with authentication and authorisation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 43,
+                  "score": ""
+                },
+                {
+                  "id": "0de2dfbb-cad9-4ab0-8b8f-9b413df40458",
+                  "title": "Skewing",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "See OWASP Automated Threat #16:\nAutomated repeated clicking or requesting or submitting content, affecting application based metrics such as counts, and measures of frequency and/or rate",
+                  "mitigation": "Defences include control of interaction frequency or proper enforcement of a single unique action",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 44,
+                  "score": ""
+                },
+                {
+                  "id": "5974b1a0-79a8-465d-90e3-103a156d0761",
+                  "title": "Spamming",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "See OWASP Automated Threat #17:\nStoring malicious such as malware, Iframe distribution, photographs & videos, advertisements, referrer spam and tracking/surveillance code",
+                  "mitigation": "Defences include detecting embedded malicious code, controling interaction frequency and enforcement of a single unique action",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 45,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "repudiation": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "diagramTop": 1,
+    "reviewer": "BTH Master's Thesis",
+    "threatTop": 45
+  }
+}

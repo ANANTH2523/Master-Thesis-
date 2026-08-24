@@ -1,0 +1,33 @@
+﻿id,description,type,valid
+1,Incorrect MITRE ATT&CK category,Categorization,true
+3,Incorrect STRIDE category,Categorization,true
+3,Incorrect MITRE ATT&CK category,Categorization,true
+4,Incorrect STRIDE category,Categorization,true
+4,Incorrect MITRE ATT&CK category,Categorization,true
+5,Incorrect MITRE ATT&CK category,Categorization,true
+6,Incorrect MITRE ATT&CK category,Categorization,true
+7,Incorrect MITRE ATT&CK category,Categorization,true
+8,Incorrect STRIDE category,Categorization,true
+8,Incorrect MITRE ATT&CK category,Categorization,true
+3,Unsupported element type,Categorization,true
+4,Unsupported element type,Categorization,true
+5,Unsupported element type,Categorization,true
+6,Unsupported element type,Categorization,true
+7,Unsupported element type,Categorization,true
+8,Unsupported element type,Categorization,true
+1,Potentially unrelated MITRE ATT&CK category,Embedding,true
+1,Potentially unrelated MITRE ATLAS category,Embedding,true
+2,Potentially unrelated MITRE ATT&CK category,Embedding,true
+2,Potentially unrelated MITRE ATLAS category,Embedding,true
+3,Potentially unrelated MITRE ATT&CK category,Embedding,true
+4,Potentially unrelated OWASP Top 10 2025 category,Embedding,true
+4,Potentially unrelated MITRE ATT&CK category,Embedding,true
+4,Potentially unrelated OWASP TOP 10 for LLM category,Embedding,true
+4,Potentially unrelated MITRE ATLAS category,Embedding,true
+5,Potentially unrelated MITRE ATT&CK category,Embedding,true
+6,Potentially unrelated MITRE ATT&CK category,Embedding,true
+7,Potentially unrelated MITRE ATT&CK category,Embedding,true
+8,Potentially unrelated OWASP Top 10 2025 category,Embedding,true
+8,Potentially unrelated MITRE ATT&CK category,Embedding,true
+8,Potentially unrelated OWASP TOP 10 for LLM category,Embedding,true
+8,Potentially unrelated MITRE ATLAS category,Embedding,true
