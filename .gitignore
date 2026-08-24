@@ -1,41 +1,72 @@
-# LaTeX build files
+# =============================================
+# LaTeX build artifacts
+# =============================================
 *.aux
 *.log
 *.out
 *.toc
-*.synctex.gz
+*.lof
+*.lot
 *.bbl
 *.blg
+*.synctex.gz
 *.fls
 *.fdb_latexmk
 *.pdfsync
 *.bcf
 *.run.xml
+*.nav
+*.snm
+*.vrb
 
-# Build folders
+# Build / output folders
 build/
 bin/
+out/
 
-# Temporary and system files
+# =============================================
+# Overleaf temporary files
+# =============================================
+output.pdf
+*.bak0
+*.bak1
+*.bak2
+
+# =============================================
+# macOS system files
+# =============================================
 .DS_Store
-.DS_Store?
+**/.DS_Store
+.AppleDouble
+.LSOverride
 ._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
+
+# =============================================
+# Archives (prevent accidental large file commits)
+# =============================================
+*.zip
+*.tar.gz
+*.rar
+
+# =============================================
+# IDEs and editors
+# =============================================
+.vscode/
+.idea/
 *.swp
 *~
 *.bak
 
-# IDEs and Editors
-.vscode/
-.idea/
-
-# Secrets and Keys
+# =============================================
+# Secrets
+# =============================================
 .env
 *.pem
 *.key
+*.cert
 
-# We DO NOT ignore thesis output files (.pdf) or data files (.csv, .json, .png, .tm7) 
-# because they are required for reproducible evaluation workflows.
+# =============================================
+# NOTE: Research data is NOT ignored
+# The following extensions are intentionally tracked:
+#   .pdf  .csv  .xlsx  .json  .png  .tm7  .html  .md  .bib  .tex  .cls  .sty
+# =============================================
