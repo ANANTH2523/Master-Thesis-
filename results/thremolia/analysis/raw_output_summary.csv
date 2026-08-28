@@ -1,0 +1,4 @@
+scenario,raw_threat_count,spoofing_count,tampering_count,repudiation_count,information_disclosure_count,denial_of_service_count,elevation_of_privilege_count,secondary_framework_columns_removed,potential_duplicate_count
+Scenario 1: Authentication Assistant,106,7,28,10,28,28,5,"Mitre ATT&CK, OWASP Top 10 2025, mitre_atlas, owasp_top_10_for_llm, linddun, owasp_ml_sec_top_10_2023",94 (Documented in secondary normalization view)
+Scenario 2: Secure File Management,105,6,29,8,29,29,4,"Mitre ATT&CK, OWASP Top 10 2025, mitre_atlas, owasp_top_10_for_llm, linddun, owasp_ml_sec_top_10_2023",97 (Documented in secondary normalization view)
+Scenario 3: Account Recovery & Profile Management,127,7,35,10,34,36,5,"Mitre ATT&CK, OWASP Top 10 2025, mitre_atlas, owasp_top_10_for_llm, linddun, owasp_ml_sec_top_10_2023",119 (Documented in secondary normalization view)
