@@ -3,8 +3,8 @@
 [![Degree: MSc Software Engineering](https://img.shields.io/badge/Degree-MSc%20Software%20Engineering-blue.svg)](https://www.bth.se/)
 [![Institution: BTH](https://img.shields.io/badge/Institution-Blekinge%20Institute%20of%20Technology-navy.svg)](https://www.bth.se/)
 [![Thesis Draft: Available](https://img.shields.io/badge/Thesis%20Draft-PDF%20(113%20pages)-brightgreen.svg)](./Thesis_Draft.pdf)
-[![Reference Baseline: 98 Threats](https://img.shields.io/badge/Reference%20Threats-98%20Expert--Vetted-orange.svg)](#-expert-reference-threat-baseline)
-[![Raw Findings: 1,025](https://img.shields.io/badge/Raw%20Findings-1%2C025%20Evaluated-purple.svg)](#-empirical-evaluation-results)
+[![Reference Baseline: 98 Threats](https://img.shields.io/badge/Reference%20Baseline-98%20Expert--Vetted-orange.svg)](#-expert-reference-threat-baseline)
+[![Raw Findings: 1,025](https://img.shields.io/badge/Raw%20Findings-1%2C025%20Evaluated-purple.svg)](#-primary-empirical-evaluation-results)
 
 Master's Degree Project in Software Engineering (20 Weeks, 30 ECTS)  
 **Blekinge Institute of Technology (BTH)**, Faculty of Computing, Karlskrona, Sweden — September 2026.
@@ -23,25 +23,37 @@ Master's Degree Project in Software Engineering (20 Weeks, 30 ECTS)
 
 ---
 
-## 📄 Thesis Draft Document
+## 📄 Thesis Monograph Document
 
-The complete 113-page thesis monograph is available directly in the repository:
+The complete 113-page final thesis monograph is available directly in the repository:
 
-- 🔗 **[Download / View Thesis Draft (PDF)](./Thesis_Draft.pdf)** *(also accessible at `thesis/Thesis_Draft.pdf`)*
+- 🔗 **[Download / View Thesis Draft (PDF)](./Thesis_Draft.pdf)** *(also accessible at [`thesis/Thesis_Draft.pdf`](./thesis/Thesis_Draft.pdf))*
 
 ---
 
-## 🔬 Executive Summary & Abstract
+## 🔬 Executive Summary & Research Objectives
 
-The rapid integration of Large Language Models (LLMs) into modern software architectures creates novel interactions between end-users, application logic, vector stores, and external APIs. This integration introduces complex security considerations—such as prompt injection, sensitive data leakage, and excessive agency—that conventional threat modelling methods may not fully capture.
+The rapid integration of Large Language Models (LLMs) into modern software architectures creates novel interactions between end-users, application logic, vector stores, and external APIs. This integration introduces complex security considerations—such as prompt injection, sensitive data leakage, and excessive agency—while traditional software vulnerabilities (e.g., authentication bypass, privilege escalation, and insecure storage) persist.
 
 This thesis presents a controlled comparative empirical study evaluating **five threat modelling approaches** across **three standardized LLM-integrated software architectures**:
 
-1. **OWASP Threat Dragon** — Classical, open-source diagram-driven threat modelling tool
-2. **Microsoft Threat Modeling Tool (TMT)** — Industry-standard STRIDE-per-element rule-based engine
-3. **OpenAI GPT-5.6** — Cloud-based general-purpose Large Language Model (ChatGPT interface)
-4. **Meta Llama 3 8B** — Locally executed open-weights LLM (via Ollama runtime `llama3:8b`, Q4_0)
-5. **ThreMoLIA** — Dedicated LLM-assisted threat modelling system leveraging multimodal GPT-4o, RAG, and vector embeddings (`text-embedding-3-small`)
+### Evaluated Approaches
+
+1. **Classical / Tool-Based Approaches:**
+   - **OWASP Threat Dragon** — Classical, open-source diagram-driven threat modelling tool.
+   - **Microsoft Threat Modeling Tool (TMT)** — Industry-standard STRIDE-per-element rule-based engine.
+2. **LLM-Based and LLM-Assisted Approaches:**
+   - **OpenAI GPT-5.6** — Cloud-based general-purpose Large Language Model evaluated via the ChatGPT interface.
+   - **Meta Llama 3 8B via Ollama** — Locally executed open-weights LLM (`llama3:8b`, Q4_0 quantization, 8K context window) via the local Ollama runtime.
+   - **ThreMoLIA** — Dedicated LLM-assisted threat modelling system/configuration. In the evaluated experimental configuration, ThreMoLIA internally leverages OpenAI's **GPT-5.4** as its internal language model across documented processing stages (diagram interpretation, threat synthesis, and validation) and vector embeddings generated with **`text-embedding-3-small`** for semantic category relevance checking.  
+     *(Note: GPT-5.4 is treated as an internal component of the ThreMoLIA configuration rather than as a separately evaluated approach).*
+
+### Evaluated Scenarios
+
+The empirical evaluation was conducted across three standardized LLM-integrated system scenarios:
+- **Scenario 1:** LLM-Integrated Authentication Assistant System (32 reference threats)
+- **Scenario 2:** LLM-Integrated Secure File Management System (33 reference threats)
+- **Scenario 3:** LLM-Integrated Account Recovery & Profile Management System (33 reference threats)
 
 ### Research Questions (RQs)
 
@@ -51,37 +63,147 @@ This thesis presents a controlled comparative empirical study evaluating **five 
 
 ---
 
-## 📊 Empirical Evaluation Results
+## 🛡️ Expert Reference Threat Baseline
 
-Across the three scenarios, the five approaches produced **1,025 raw threat findings**, evaluated against an independently established baseline of **98 expert-vetted reference threats** (Waibloz AB security experts).
+The **98 reference threats** across the three scenarios were established independently by cybersecurity experts at **Waibloz AB** and are provided as CSV baselines in the repository root:
 
-### Primary Comparative Metrics (Table 6.1 from Thesis)
+| Baseline File | Scenario Architecture | Reference Threats |
+|:---|:---|:---:|
+| [`Scenario1_Expert_Reference_Baseline_FINAL.csv`](./Scenario1_Expert_Reference_Baseline_FINAL.csv) | Scenario 1: Authentication Assistant System | 32 |
+| [`Scenario2_Expert_Reference_Baseline_FINAL.csv`](./Scenario2_Expert_Reference_Baseline_FINAL.csv) | Scenario 2: Secure File Management System | 33 |
+| [`Scenario3_Expert_Reference_Baseline_FINAL.csv`](./Scenario3_Expert_Reference_Baseline_FINAL.csv) | Scenario 3: Account Recovery & Profile Management System | 33 |
+| **Total Baseline** | | **98** |
+
+### ⚠️ Important Methodological Clarification on Ground Truth & False Positives
+
+1. **Comparison Baseline, Not Absolute Ground Truth:**  
+   The 98 reference threats constitute an **expert-vetted comparison baseline** for structured empirical benchmarking. They are **NOT** claimed to be an absolute, complete, or exhaustive ground truth of every conceivable vulnerability in the analysed systems. Recall therefore reflects correspondence with this bounded reference baseline under predefined semantic matching criteria rather than absolute security coverage.
+
+2. **Definition of False Positives (FP):**  
+   A false positive represents a generated finding for which **no accepted correspondence was established against the bounded expert-vetted reference baseline under the predefined matching criteria**. Because the reference baseline is not exhaustive, an FP classification does **not** by itself establish that the underlying security concern is invalid, technically implausible, or non-security-relevant.
+
+---
+
+## 📊 Primary Empirical Evaluation Results
+
+Across the three scenarios, the five approaches generated **1,025 raw threat findings**, which were evaluated against the 98-threat expert-vetted reference baseline using predefined matching criteria.
+
+### Final Comparative Evaluation (Table 6.1 from Thesis)
 
 | Approach | Type | Reference Baseline | Raw Findings | Primary TP | Duplicate Findings | False Positives (FP) | False Negatives (FN) | Precision (%) | Recall / Coverage (%) | F1-Score (%) |
 |:---|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | **ThreMoLIA** | LLM-Assisted | 98 | 328 | 69 | 164 | 95 | 29 | 42.07% | **70.41%** | **52.67%** |
 | **GPT-5.6** | Cloud LLM | 98 | 181 | 52 | 72 | 57 | 46 | **47.71%** | 53.06% | 50.24% |
-| **Llama 3 8B (Ollama)** | Local LLM | 98 | 92 | 20 | 26 | 46 | 78 | 30.30% | 20.41% | 24.39% |
+| **Llama 3 8B via Ollama** | Local LLM | 98 | 92 | 20 | 26 | 46 | 78 | 30.30% | 20.41% | 24.39% |
 | **Microsoft TMT** | Classical Tool | 98 | 301 | 28 | 52 | 221 | 70 | 11.24% | 28.57% | 16.14% |
 | **OWASP Threat Dragon** | Classical Tool | 98 | 123 | 19 | 25 | 79 | 79 | 19.39% | 19.39% | 19.39% |
 
-> **Key Takeaways:**
-> - **Coverage vs. Precision Trade-off:** ThreMoLIA achieved the highest recall (**70.41%**) and F1-score (**52.67%**), but produced significant redundancy (164 duplicates; 50% of its output). GPT-5.6 delivered the highest precision (**47.71%**) and primary yield (**28.73%**).
-> - **Evidence Grounding (RQ3):** GPT-5.6 achieved the highest full architectural grounding rate (**74.59%**), followed by Llama 3 8B (**31.52%**), ThreMoLIA (**31.10%**), Microsoft TMT (**19.60%**), and OWASP Threat Dragon (**3.25%**).
-> - **Practical Recommendation:** AI-based threat generation should serve as a *complementary, human-supervised exploration tool* rather than an autonomous replacement for architectural threat analysis.
+*Note on Terminology & Metrics:*  
+- **Primary TP:** Primary True Positives. Each reference threat can contribute at most one Primary True Positive within an approach and scenario.
+- **Duplicate Findings:** Additional semantically equivalent findings generated by the same approach for an already-mapped reference threat; duplicates do not increase recall.
+- **FN:** Reference-threat instances for which no valid Primary True Positive mapping was established ($\text{FN} = \text{Reference} - \text{Primary TP}$).
+- **Precision:** $\text{Primary TP} / (\text{Primary TP} + \text{FP})$.
+- **Recall:** $\text{Primary TP} / \text{Reference Baseline}$.
+- **F1-Score:** Harmonic mean of Precision and Recall.
 
 ---
 
-## 🛡️ Expert Reference Threat Baseline
+## 🏛️ Evidence Grounding Assessment (RQ3)
 
-The 98 reference threats were established independently by senior cybersecurity practitioners at **Waibloz AB** and are provided as authoritative CSV baselines in the repository root:
+Evidence grounding was treated as an independent analytical dimension from reference-threat matching. Grounding measures whether a generated threat finding is supported by concrete architectural evidence (components, data flows, trust boundaries, and stated assets) from the scenario architecture.
 
-| Baseline File | Scenario Architecture | Reference Threats |
-|:---|:---|:---:|
-| [`Scenario1_Expert_Reference_Baseline_FINAL.csv`](./Scenario1_Expert_Reference_Baseline_FINAL.csv) | LLM-Integrated Authentication System | 32 |
-| [`Scenario2_Expert_Reference_Baseline_FINAL.csv`](./Scenario2_Expert_Reference_Baseline_FINAL.csv) | LLM-Integrated Secure File Management System | 33 |
-| [`Scenario3_Expert_Reference_Baseline_FINAL.csv`](./Scenario3_Expert_Reference_Baseline_FINAL.csv) | LLM-Integrated Account Recovery & Profile Management | 33 |
-| **Total** | | **98** |
+A per-finding grounding assessment was performed for all **1,025 raw generated findings** using a four-level rubric:
+
+| Grounding Category | Aggregate Finding Count | Percentage (%) |
+|:---|:---:|:---:|
+| **Fully Grounded** | 329 | 32.10% |
+| **Partially Grounded** | 689 | 67.22% |
+| **Not Grounded** | 7 | 0.68% |
+| **Unassessable** | 0 | 0.00% |
+| **Total Findings** | **1,025** | **100.00%** |
+
+### Full Grounding Rates by Approach
+
+| Approach | Total Findings | Fully Grounded Findings | Full Grounding Rate (%) |
+|:---|:---:|:---:|:---:|
+| **GPT-5.6** | 181 | 135 | **74.59%** |
+| **Llama 3 8B via Ollama** | 92 | 29 | **31.52%** |
+| **ThreMoLIA** | 328 | 102 | **31.10%** |
+| **Microsoft TMT** | 301 | 59 | **19.60%** |
+| **OWASP Threat Dragon** | 123 | 4 | **3.25%** |
+
+> **Methodological Note on Grounding:**  
+> The grounding assessment was conducted as a single-pass coding analysis by the thesis authors without an independent parallel assessor. The reported classifications and rates should therefore be interpreted as **descriptive measurements under the defined grounding rubric** rather than as independently validated inter-rater measurements. Furthermore, architectural evidence grounding is distinct from reference-threat correctness: an ungrounded finding may describe a valid general security concern, while a fully grounded finding may still be classified as a false positive relative to the bounded reference baseline.
+
+---
+
+## 🔍 Supporting Empirical Analyses
+
+### 1. LLM-Specific vs. Conventional Threat Recall (Table 4.5 from Thesis)
+
+The 98 reference threats comprise **38 LLM-specific threats** (prompt injection, model hallucination, training context leakage, and excessive agency) and **60 non-LLM / conventional software threats** (authentication flaws, authorization gaps, network sniffing, and database tampering):
+
+| Approach | LLM-Specific TP (out of 38) | LLM-Specific Recall (%) | Non-LLM TP (out of 60) | Non-LLM Recall (%) |
+|:---|:---:|:---:|:---:|:---:|
+| **GPT-5.6** | 25 | **65.79%** | 27 | 45.00% |
+| **ThreMoLIA** | 24 | 63.16% | 45 | **75.00%** |
+| **Microsoft TMT** | 11 | 28.95% | 17 | 28.33% |
+| **Llama 3 8B via Ollama** | 8 | 21.05% | 12 | 20.00% |
+| **OWASP Threat Dragon** | 4 | 10.53% | 15 | 25.00% |
+
+### 2. STRIDE Categorical Analysis & Interpretation
+
+The evaluated approaches exhibited substantial variation across STRIDE threat categories:
+- **ThreMoLIA** demonstrated high recall in Information Disclosure (61.54%) and Denial of Service (90.00%).
+- **GPT-5.6** identified threats across Spoofing, Tampering, Information Disclosure, and Denial of Service.
+- Classical tools (TMT and Threat Dragon) focused on standard element-level interactions, showing lower identification of LLM-specific vulnerabilities.
+
+> **Cautionary Methodological Note on STRIDE:**  
+> In accordance with the thesis, the STRIDE-related analysis should be treated as a **characteristic associated with the observed output profile rather than as an isolated causal explanation**. Differences in recall across categories reflect how each approach operationalizes threat identification rather than an experimentally isolated causal factor.
+
+### 3. Repeated-Run Consistency Analysis
+
+Run-to-run consistency was examined as supporting methodological context for LLM-based approaches with repeated executions (Run 1 and Run 2):
+- Repeated executions of general-purpose LLM approaches under comparable conditions produced noticeable variation in generated outputs.
+- Because the available records did not support an aggregate, standardized run-level comparison across all five approaches, **aggregate Jaccard similarity metrics are not presented as formal comparative performance metrics**. Output variation is treated descriptively as an observed characteristic of stochastic LLM generation.
+
+### 4. Adjudication & Matching Methodology
+
+- Matching of generated findings to reference threats was performed by the thesis authors using predefined semantic matching criteria.
+- Preserved outputs and scenario architectures were reviewed to resolve ambiguous candidate mappings.
+- **Low-Confidence Adjudication Review:** A documented review was conducted on 27 low-confidence primary mappings:
+  - **20** were retained as Primary True Positives.
+  - **7** resulted in a change of reference-threat assignment.
+  - **0** cases were changed from Primary True Positive to False Positive.
+  - **0** new baseline reference threats were introduced.
+  - The aggregate Primary TP count remained unchanged at **69**.
+- Independent parallel classifications were not retained prior to adjudication; therefore, formal inter-rater reliability statistics (such as Cohen's $\kappa$) are not applicable.
+
+### 5. Qualitative Practitioner Feedback
+
+Qualitative practitioner feedback was collected from **Rickard Erwinson** of **Waibloz AB** on two selected reports from Scenario 1:
+- The practitioner observations favoured the GPT-5.6 report in perceived clarity, relevance, and actionability, while recognizing value in the structured element-by-element organization of the OWASP Threat Dragon report.
+- This feedback represents a qualitative, single-practitioner contextual perspective. It does **not** constitute a formal usability study (no standardized System Usability Scale [SUS] questionnaire was administered) and is not presented as statistically generalizable evidence.
+
+---
+
+## 📋 Audited Feature & Functionality Matrix
+
+A supplementary qualitative comparison of the documented capabilities of the five approaches was conducted across 13 evaluation features:
+
+| Approach | Audited Feature Completeness | Methodology & Architecture Input | Execution & Privacy Context |
+|:---|:---:|:---|:---|
+| **OWASP Threat Dragon** | **90%** | Native DFD diagramming; STRIDE | Local / offline execution; Open source |
+| **Microsoft TMT** | **80%** | Native DFD diagramming; STRIDE-per-element | Local / offline execution; Free Microsoft tool |
+| **ThreMoLIA** | **90%** | Structured DFD & textual input; STRIDE-per-element | Documented local/hybrid capability; Research prototype |
+| **Meta Llama 3 8B (Ollama)** | **90%** | Textual architecture specification | Local / offline execution via Ollama runtime |
+| **OpenAI GPT-5.6 (ChatGPT)** | **60%** | Textual architecture specification | Cloud-based execution only; Web interface |
+
+> **Important Caveats on the Feature Matrix:**  
+> - **Not an Effectiveness Metric:** Feature completeness reflects documented tool capabilities and is **not** a measure of empirical threat-modelling effectiveness, recall, or precision.  
+> - **ChatGPT Free-Use Status:** The free-use status of ChatGPT was not established.  
+> - **ThreMoLIA Offline Mode:** The local/offline capability of ThreMoLIA is a documented capability of the system and does not imply that this mode was exercised in the cloud-assisted experimental configuration.  
+> - **Licensing Distinction:** The open-source licensing of the Ollama runtime must be distinguished from the licensing terms governing Meta's underlying Llama 3 model weights.
 
 ---
 
@@ -90,35 +212,38 @@ The 98 reference threats were established independently by senior cybersecurity 
 ```text
 Master-Thesis-/
 ├── Thesis_Draft.pdf                               ← Full 113-page Master's thesis monograph (PDF)
-├── README.md                                      ← Repository overview, setup, and results documentation
-├── .gitignore                                     ← LaTeX, Python, macOS, and build ignore rules
+├── README.md                                      ← Repository overview, setup, results, and documentation
+├── .gitignore                                     ← Git ignore rules (LaTeX, build, macOS, cache, temp)
 │
 ├── Scenario1_Expert_Reference_Baseline_FINAL.csv  ← Expert reference threat baseline (Scenario 1: 32 threats)
 ├── Scenario2_Expert_Reference_Baseline_FINAL.csv  ← Expert reference threat baseline (Scenario 2: 33 threats)
 ├── Scenario3_Expert_Reference_Baseline_FINAL.csv  ← Expert reference threat baseline (Scenario 3: 33 threats)
 │
-├── thesis/                                        # Thesis document distribution
-│   └── Thesis_Draft.pdf                           ← Compiled thesis draft
+├── thesis/                                        # Thesis monograph distribution
+│   └── Thesis_Draft.pdf                           ← Compiled thesis monograph (113 pages, identical copy)
 │
-├── results/                                       # Empirical analysis, evidence audit, and workbooks
+├── results/                                       # Empirical analysis, evidence audit, and master workbooks
+│   ├── final thesis workbook.xlsx                 ← Authoritative consolidated evaluation workbook (formula-linked)
 │   ├── THESIS_EVIDENCE_AUDIT.xlsx                 ← Master 23-sheet empirical evidence audit workbook
-│   ├── final thesis workbook.xlsx                 ← Consolidated analytical evaluation workbook
 │   ├── final/                                     ← Processed validation summaries and normalized datasets
-│   │   ├── Master_Thesis_Final_Results.xlsx       ← Clean summary of metrics and findings
+│   │   ├── Master_Thesis_Final_Results.xlsx       ← Clean summary of metrics and adjudicated findings
+│   │   ├── corrected ananth sheet.xlsx            ← Master adjudicated matching records (identical copy)
 │   │   ├── all_scenarios_normalized_master.xlsx   ← Cross-scenario normalized master spreadsheet
-│   │   ├── corrected ananth sheet.xlsx            ← Adjudicated matching records
-│   │   ├── cross_scenario_validation_summary.md   ← Cross-scenario validation methodology notes
-│   │   ├── cross_scenario_validation_summary.pdf  ← PDF version of validation summary
 │   │   ├── raw_output_summary.csv                 ← Quantitative finding volume summary
 │   │   ├── RAW_OUTPUT_README.md                   ← Raw data lineage documentation
-│   │   └── RAW_vs_NORMALIZED_METHOD.md            ← Threat normalization methodology specification
-│   └── thremolia/                                 ← ThreMoLIA raw JSON and CSV output exports
+│   │   ├── RAW_vs_NORMALIZED_METHOD.md            ← Threat normalization methodology specification
+│   │   ├── cross_scenario_validation_summary.md   ← Cross-scenario validation methodology notes
+│   │   └── cross_scenario_validation_summary.pdf  ← PDF version of validation summary
+│   └── thremolia/                                 ← ThreMoLIA raw exports
 │       └── raw/
-│           ├── scenario1_raw.csv / .json          ← Scenario 1 ThreMoLIA findings (106 threats)
-│           ├── scenario2_raw.csv / .json          ← Scenario 2 ThreMoLIA findings (105 threats)
-│           └── scenario3_raw.csv / .json          ← Scenario 3 ThreMoLIA findings (117 threats)
+│           ├── scenario1_raw.csv                  ← Scenario 1 ThreMoLIA findings (106 threats)
+│           ├── scenario1_raw.json                 ← Scenario 1 ThreMoLIA raw JSON export
+│           ├── scenario2_raw.csv                  ← Scenario 2 ThreMoLIA findings (105 threats)
+│           ├── scenario2_raw.json                 ← Scenario 2 ThreMoLIA raw JSON export
+│           ├── scenario3_raw.csv                  ← Scenario 3 ThreMoLIA raw export (127 threats)
+│           └── scenario3_raw.json                 ← Scenario 3 ThreMoLIA raw JSON export (127 threats)
 │
-├── data/                                          # Experimental data organised by scenario
+├── data/                                          # Experimental data organized by scenario
 │   ├── scenario1/                                 # Scenario 1: Authentication Assistant System
 │   │   ├── architecture/
 │   │   │   ├── sce 1 architecture.tm7             ← Microsoft TMT architectural model file
@@ -130,11 +255,16 @@ Master-Thesis-/
 │   │   │   ├── Scenario_1_Scenario_Package.html   ← Microsoft TMT HTML report package
 │   │   │   └── scenario1 tmt.csv                  ← Exported TMT threat list
 │   │   └── llm_outputs/
-│   │       ├── sce 1 r1 chatgpt.pdf / r2.pdf      ← ChatGPT (GPT-5.6) Run 1 and Run 2 reports
-│   │       ├── sce1 r1 llama.pdf / r2.pdf         ← Llama 3 8B (Ollama) Run 1 and Run 2 reports
-│   │       ├── sce 1 thremolia.csv                ← ThreMoLIA raw threat dataset (106 findings)
-│   │       ├── scenario1_thremolia_raw.csv / .json← Raw structured ThreMoLIA output
-│   │       └── scenario1_normalized.pdf / .xlsx   ← Normalized scenario analysis
+│   │       ├── sce 1 r1 chatgpt.pdf               ← ChatGPT (GPT-5.6) Run 1 report
+│   │       ├── sce 1 r2 chatgpt.pdf               ← ChatGPT (GPT-5.6) Run 2 report
+│   │       ├── sce1 r1 llama.pdf                  ← Llama 3 8B (Ollama) Run 1 report
+│   │       ├── sce 1 r2 llama.pdf                 ← Llama 3 8B (Ollama) Run 2 report
+│   │       ├── sce 1 thremolia.csv                ← ThreMoLIA threat dataset (106 findings)
+│   │       ├── scenario1_thremolia_raw.csv        ← Raw structured ThreMoLIA CSV output
+│   │       ├── scenario1_thremolia_raw.json       ← Raw structured ThreMoLIA JSON output
+│   │       ├── scenario1_raw.json                 ← Preserved raw JSON export
+│   │       ├── scenario1_normalized.xlsx          ← Normalized scenario analysis (Excel)
+│   │       └── scenario1_normalized.pdf           ← Normalized scenario analysis (PDF)
 │   │
 │   ├── scenario2/                                 # Scenario 2: Secure File Management System
 │   │   ├── architecture/
@@ -147,11 +277,16 @@ Master-Thesis-/
 │   │   │   ├── Scenario2_Scenario_Package.html    ← Microsoft TMT HTML report package
 │   │   │   └── scenario 2 tmt.csv                 ← Exported TMT threat list
 │   │   └── llm_outputs/
-│   │       ├── sce 2 r1 chatgpt.pdf / r2.pdf      ← ChatGPT (GPT-5.6) Run 1 and Run 2 reports
-│   │       ├── sce 2 r1 llama.pdf / r2.pdf        ← Llama 3 8B (Ollama) Run 1 and Run 2 reports
-│   │       ├── sce 2 thremolia.csv                ← ThreMoLIA raw threat dataset (105 findings)
-│   │       ├── scenario2_thremolia_raw.csv / .json← Raw structured ThreMoLIA output
-│   │       └── scenario2_normalized.pdf / .xlsx   ← Normalized scenario analysis
+│   │       ├── sce 2 r1 chatgpt.pdf               ← ChatGPT (GPT-5.6) Run 1 report
+│   │       ├── sce 2 r2 chatgpt.pdf               ← ChatGPT (GPT-5.6) Run 2 report
+│   │       ├── sce 2 r1 llama.pdf                 ← Llama 3 8B (Ollama) Run 1 report
+│   │       ├── sce 2 r2 llama.pdf                 ← Llama 3 8B (Ollama) Run 2 report
+│   │       ├── sce 2 thremolia.csv                ← ThreMoLIA threat dataset (105 findings)
+│   │       ├── scenario2_thremolia_raw.csv        ← Raw structured ThreMoLIA CSV output
+│   │       ├── scenario2_thremolia_raw.json       ← Raw structured ThreMoLIA JSON output
+│   │       ├── scenario2_raw.json                 ← Preserved raw JSON export
+│   │       ├── scenario2_normalized.xlsx          ← Normalized scenario analysis (Excel)
+│   │       └── scenario2_normalized.pdf           ← Normalized scenario analysis (PDF)
 │   │
 │   └── scenario3/                                 # Scenario 3: Account Recovery & Profile System
 │       ├── architecture/
@@ -164,50 +299,88 @@ Master-Thesis-/
 │       │   ├── Scenario3_Scenario_Package.html    ← Microsoft TMT HTML report package
 │       │   └── scenario 3 tmt.csv                 ← Exported TMT threat list
 │       └── llm_outputs/
-│           ├── sce 3 r1 chatgpt.pdf / r2.pdf      ← ChatGPT (GPT-5.6) Run 1 and Run 2 reports
-│           ├── sce 3 r1 llama.pdf / r2.pdf        ← Llama 3 8B (Ollama) Run 1 and Run 2 reports
-│           ├── sce 3 thremolia.csv                ← ThreMoLIA raw threat dataset (117 findings)
-│           ├── scenario3_thremolia_raw.csv / .json← Raw structured ThreMoLIA output
-│           └── scenario3_normalized.pdf / .xlsx   ← Normalized scenario analysis
+│           ├── sce 3 r1 chatgpt.pdf               ← ChatGPT (GPT-5.6) Run 1 report
+│           ├──  sce 3 r2 chatgpt.pdf              ← ChatGPT (GPT-5.6) Run 2 report
+│           ├── sce 3 r1 llama.pdf                 ← Llama 3 8B (Ollama) Run 1 report
+│           ├── sce 3 r2 llama.pdf                 ← Llama 3 8B (Ollama) Run 2 report
+│           ├── sce 3 thremolia.csv                ← ThreMoLIA threat dataset (117 findings in thesis)
+│           ├── scenario3_thremolia_raw.csv        ← Raw structured ThreMoLIA CSV output (127 findings)
+│           ├── scenario3_thremolia_raw.json       ← Raw structured ThreMoLIA JSON output (127 findings)
+│           ├── scenario3_raw.json                 ← Preserved raw JSON export (127 findings)
+│           ├── scenario3_normalized.xlsx          ← Normalized scenario analysis (Excel)
+│           └── scenario3_normalized.pdf           ← Normalized scenario analysis (PDF)
 │
 ├── prompts/                                       # Standardized experimental prompts
-│   ├── chatgpt_prompts/                           ← Scenario 1, 2, 3 prompts for ChatGPT (GPT-5.6)
-│   ├── ollama_prompts/                            ← Scenario 1, 2, 3 prompts for Ollama (Llama 3 8B)
-│   └── thremolia_prompts/                         ← Scenario 1, 2, 3 architectural inputs for ThreMoLIA
+│   ├── chatgpt_prompts/                           ← Prompts for ChatGPT (GPT-5.6)
+│   │   ├── scenario 1 llm.pdf
+│   │   ├── scenario 2 llm.pdf
+│   │   └── scenario 3 llm.pdf
+│   ├── ollama_prompts/                            ← Prompts for Ollama (Llama 3 8B) [identical to ChatGPT]
+│   │   ├── scenario 1 llm.pdf
+│   │   ├── scenario 2 llm.pdf
+│   │   └── scenario 3 llm.pdf
+│   └── thremolia_prompts/                         ← Architectural inputs for ThreMoLIA
+│       ├── scenaruio 1 thremolia.pdf
+│       ├── scenario 2 thremolia.pdf
+│       └── scenario 3 thremolia.pdf
+
 │
-└── documentation/                                 # Supporting documentation
+└── documentation/                                 # Research documentation
     └── project_plan/
-        └── Thesis project plan.pdf                ← Initial approved research plan
+        └── Thesis project plan.pdf                ← Approved initial degree project plan
 ```
 
 ---
 
-## 🛠️ Reproduction & Verification Guide
+## 🛠️ Reproduction, Artifact Usage & Environmental Dependencies
 
-### 1. Clone Repository
+### What is Directly Inspectable and Verifiable
 
-```bash
-git clone https://github.com/ANANTH2523/Master-Thesis-.git
-cd Master-Thesis-
-```
+The repository provides full data provenance and complete analytical transparency:
+1. **Reference Baselines:** The 98 reference threats are provided in CSV format at the repository root.
+2. **Raw Generated Outputs:** All 1,025 raw threat findings are available across `data/` and `results/` in CSV, JSON, HTML, and PDF formats.
+3. **Traceability & Calculations:** `results/final thesis workbook.xlsx` and `results/THESIS_EVIDENCE_AUDIT.xlsx` contain formula-linked calculations for all metrics reported in the thesis.
+4. **Experimental Prompts:** Scenario-specific prompt packages are available in `prompts/` and verbatim in Appendix A.9 of the thesis monograph.
 
-### 2. Inspecting the Evidence Audit
+### External Tool & Runtime Dependencies
 
-The master spreadsheet `results/THESIS_EVIDENCE_AUDIT.xlsx` provides complete end-to-end traceability across 23 distinct analytical sheets:
+Re-running the threat generation procedures requires external tools and environments:
+- **Microsoft Threat Modeling Tool (TMT):** Requires Windows and the proprietary Microsoft TMT 2016 application.
+- **OWASP Threat Dragon:** Requires the open-source Threat Dragon desktop application or web deployment.
+- **OpenAI GPT-5.6:** Requires access to the OpenAI ChatGPT web interface or API; generation is cloud-hosted and subject to model version availability and non-deterministic sampling.
+- **Meta Llama 3 8B:** Requires a local installation of the [Ollama runtime](https://ollama.ai/) with the `llama3:8b` (Q4_0) model weights pulled onto compatible hardware.
+- **ThreMoLIA:** A specialized research prototype system requiring its dedicated Python execution environment, dependencies, and OpenAI API access.
 
-- `FILE_INVENTORY`: Inventory of all experimental output files
-- `RAW_COUNTS`: Exact counts of raw generated findings across all tools
-- `REFERENCE_CATALOGUE`: The 98 expert-vetted baseline reference threats
-- `THREAT_MAPPING`: Mapping of each generated finding to reference threats
-- `TP_FP_FN`: Classification into Primary True Positives, Duplicates, False Positives, and False Negatives
-- `PRECISION_RECALL_F1`: Mathematical derivation of Coverage, Precision, and F1-Scores
-- `GROUNDING`: Single-pass coding rubric assessment of architectural grounding (RQ3)
-- `STRIDE` & `OWASP_LLM`: Categorical breakdowns and LLM-specific vulnerability analysis
-- `PROMPTS` & `MODEL_CONFIGURATION`: Verbatim prompts and hyperparameter specifications
+> **Reproducibility Caveat:**  
+> The repository supports **data and analytical verification** of all published findings. It does **not** claim push-button automated re-execution of all approaches due to external API dependencies, proprietary runtime requirements, and non-deterministic LLM sampling.
 
 ---
 
-## 📜 Ethical & Academic Disclosure
+## 📚 Bibliography & Key References
 
-- **Advisor Involvement:** The academic advisor, Dr. Oleksandr Adamov, is involved in the development of ThreMoLIA. This relationship is explicitly disclosed in the thesis (Section 3.5, page 32). To ensure objectivity, the reference threat baselines were established independently by external security experts at Waibloz AB, and identical matching criteria were applied across all five approaches.
-- **Academic Context:** Developed in partial fulfillment of the Master of Science in Software Engineering at Blekinge Institute of Technology (BTH).
+The key academic literature informing the methodology and comparative evaluation is listed below with persistent Digital Object Identifiers (DOIs):
+
+1. **[1]** O. Adamov, D. Fucci, F. V. Jedrzejewski, R. Britto, and N. Saini, "Validating threat modeling results with the help of vulnerable test applications," in *2026 32nd International Conference on Telecommunications (ICT)*, IEEE, 2026, pp. 227–230. [DOI: 10.1109/ICT70370.2026.11594664](https://doi.org/10.1109/ICT70370.2026.11594664)
+2. **[5]** B. C. Das, M. H. Amini, and Y. Wu, "Security and privacy challenges of large language models: A survey," *ACM Computing Surveys*, vol. 57, no. 6, Article 152, 2025. [DOI: 10.1145/3712001](https://doi.org/10.1145/3712001)
+3. **[7]** D. Granata and M. Rak, "Systematic analysis of automated threat modelling techniques: Comparison of open-source tools," *Software Quality Journal*, vol. 32, no. 1, pp. 125–161, 2024. [DOI: 10.1007/s11219-023-09634-4](https://doi.org/10.1007/s11219-023-09634-4)
+4. **[9]** F. V. Jedrzejewski, O. Adamov, and D. Fucci, "Threat modeling for large language model-integrated applications (ThreMoLIA)," in *2025 ACM/IEEE International Symposium on Empirical Software Engineering and Measurement (ESEM)*, IEEE, 2025, pp. 505–507. [DOI: 10.1109/ESEM64174.2025.00068](https://doi.org/10.1109/ESEM64174.2025.00068)
+5. **[12]** Y. Kaya, A. Landerer, S. Pletinckx, M. Zimmermann, C. Kruegel, and G. Vigna, "When AI meets the web: Prompt injection risks in third-party AI chatbot plugins," in *2026 IEEE Symposium on Security and Privacy (SP)*, IEEE, 2026, pp. 4223–4242. [DOI: 10.1109/SP63933.2026.00062](https://doi.org/10.1109/SP63933.2026.00062)
+6. **[13]** L. Mauri and E. Damiani, "Modeling threats to AI-ML systems using STRIDE," *Sensors*, vol. 22, no. 17, Article 6662, 2022. [DOI: 10.3390/s22176662](https://doi.org/10.3390/s22176662)
+7. **[14]** W. B. Mbaka and K. Tuma, "Less is more: Usefulness of data flow diagrams and large language models for security threat validation," *Empirical Software Engineering*, vol. 31, no. 5, Article 122, 2026. [DOI: 10.1007/s10664-026-10837-z](https://doi.org/10.1007/s10664-026-10837-z)
+8. **[15]** M. Mollaeefar, A. Bissoli, D. Van Landuyt, and S. Ranise, "PILLAR: LINDDUN privacy threat modeling using LLMs," in *2025 IEEE European Symposium on Security and Privacy Workshops (EuroS&PW)*, IEEE, 2025, pp. 278–286. [DOI: 10.1109/EuroSPW67616.2025.00038](https://doi.org/10.1109/EuroSPW67616.2025.00038)
+9. **[16]** T. R. Pathe and S. Hacks, "Towards threat modeling with large language models - automating domain-specific language creation in meta attack language (MAL)," in *Conceptual Modeling (ER 2025)*, Lecture Notes in Computer Science, vol. 16189, Springer, 2026, pp. 146–164. [DOI: 10.1007/978-3-032-08623-5_8](https://doi.org/10.1007/978-3-032-08623-5_8)
+10. **[17]** R. Scandariato, K. Wuyts, and W. Joosen, "A descriptive study of Microsoft's threat modeling technique," *Requirements Engineering*, vol. 20, no. 2, pp. 163–180, 2015. [DOI: 10.1007/s00766-013-0195-2](https://doi.org/10.1007/s00766-013-0195-2)
+11. **[23]** D. Van Landuyt, M. Mollaeefar, M. Raciti, S. Verreydt, A. Kalash, A. Bissoli, D. Preuveneers, G. Bella, and S. Ranise, "A comparative benchmark study of LLM-based threat elicitation tools," *Future Generation Computer Systems*, vol. 177, Article 108243, 2026. [DOI: 10.1016/j.future.2025.108243](https://doi.org/10.1016/j.future.2025.108243)
+12. **[24]** D. Van Landuyt and W. Joosen, "A descriptive study of assumptions in STRIDE security threat modeling," *Software and Systems Modeling*, vol. 21, no. 6, pp. 2311–2328, 2022. [DOI: 10.1007/s10270-021-00941-7](https://doi.org/10.1007/s10270-021-00941-7)
+13. **[25]** Y. Yao, J. Duan, K. Xu, Y. Cai, Z. Sun, and Y. Zhang, "A survey on large language model (LLM) security and privacy: The good, the bad, and the ugly," *High-Confidence Computing*, vol. 4, no. 2, Article 100211, 2024. [DOI: 10.1016/j.hcc.2024.100211](https://doi.org/10.1016/j.hcc.2024.100211)
+
+---
+
+## 📜 Ethical Disclosures & Academic Integrity
+
+- **Generative AI Disclosure:** Generative AI was used in this study in two distinct contexts:
+  1. *Experimental Threat Modelling:* Large language models (GPT-5.6, Llama 3 8B via Ollama, and ThreMoLIA) were evaluated as experimental threat-modelling approaches. Their generated outputs constitute primary empirical data.
+  2. *Thesis Preparation:* Generative AI (ChatGPT) was used during thesis preparation for language refinement, restructuring, and editorial assistance. Such use is strictly distinguished from the experimental evaluation. The thesis authors remained fully responsible for the interpretation of the results, methodological decisions, factual accuracy, and final content of the thesis.
+- **Advisor Involvement Disclosure:** Academic advisor Dr. Oleksandr Adamov is involved in the development of ThreMoLIA. This relationship is explicitly disclosed in the thesis (Section 3.5, page 32). To ensure objectivity, the reference threat baseline was established independently by cybersecurity experts at Waibloz AB, and identical matching criteria were applied across all five evaluated approaches.
+- **Confidentiality & Public Sharing:** In accordance with the thesis disclosure, only materials approved for public/repository sharing are included in this repository. Confidential, proprietary, personal, or non-approved Waibloz AB materials are excluded.
+- **Academic Context:** Developed in partial fulfillment of the requirements for the Master of Science in Software Engineering at Blekinge Institute of Technology (BTH), Sweden.
