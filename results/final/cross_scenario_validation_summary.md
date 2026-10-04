@@ -18,7 +18,9 @@ The primary objective of this normalization is to establish an **academically de
 | **Evidence Grounding Rate** | **100.0%** | **100.0%** | **100.0%** | **100.0%** | Proportion of retained findings with explicit architectural evidence. |
 | **Threat Precision Rate** | **11.3%** | **7.6%** | **6.8%** | **8.5%** | Precision = $N_{valid} / N_{raw}$ (signal-to-noise ratio). |
 | **Unsupported Architecture Findings** | **0** | **0** | **0** | **0** | Zero non-existent components, caches, or databases retained. |
-| **Reference-Based Threat Coverage** | *Not calculated* | *Not calculated* | *Not calculated* | *Not calculated* | Independent ground-truth benchmark threat set not supplied. |
+| **Reference-Based Threat Coverage (Final Thesis)** | **81.3% (26/32)** | **69.7% (23/33)** | **60.6% (20/33)** | **70.41% (69/98)** | Primary TP recall evaluated against the 98 expert-vetted reference baseline (Table 6.1). |
+
+*Note: The canonical metrics above ($N_{valid}=28$, $N_{dup}=300$) represent the secondary normalization and deduplication analysis. The primary thesis comparative evaluation against the 98 expert-vetted reference threats is reported in Table 6.1 (69 Primary TP, 164 duplicates, 95 FP, 29 FN).*
 
 ---
 
@@ -39,6 +41,7 @@ The primary objective of this normalization is to establish an **academically de
 ---
 
 ### 4. Methodological Grounding & Anti-Hallucination Adherence
-- **Data Layer Separation**: Raw outputs are preserved verbatim in Layer 1 (`scenarioX_raw.*`) while validated findings are structured in Layer 2 (`scenarioX_validated.*`).
+- **Data Layer Separation**: Raw outputs are preserved in Layer 1 (`scenarioX_raw.*` / `sce X thremolia.csv`) while canonical normalized findings are structured in Layer 2 (`scenarioX_normalized.xlsx` / `all_scenarios_normalized_master.xlsx`).
 - **No Invented Infrastructure**: Technologies such as Redis, SIEM, WAF, or Kubernetes were not injected into threat descriptions or mitigations unless explicitly present.
 - **Metric Integrity**: Raw finding counts are not used as denominators for coverage calculations.
+

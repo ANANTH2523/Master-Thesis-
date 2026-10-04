@@ -82,14 +82,19 @@ __pycache__/
 .venv/
 venv/
 
+# Scratch and agent workspace temp files
+scratch/
+
 # =============================================
 # NOTE: Research data is NOT ignored
 # The following extensions are intentionally tracked:
 #   .pdf  .csv  .xlsx  .json  .png  .tm7  .html  .md  .bib  .tex  .cls  .sty
 #
 # Key folders with tracked research files:
-#   data/          — raw experimental outputs (scenarios 1-3)
-#   reference_models/ — baseline reference threat models
-#   results/       — final analysis outputs
-#   thesis/        — LaTeX source files
+#   Scenario*_Expert_Reference_Baseline_FINAL.csv — expert-vetted reference threat baselines
+#   data/          — raw experimental outputs and architectures (scenarios 1-3)
+#   prompts/       — standardized experimental prompt packages
+#   results/       — empirical analysis, workbooks, and evidence audit datasets
+#   thesis/        — compiled thesis PDF monograph
 # =============================================
+
